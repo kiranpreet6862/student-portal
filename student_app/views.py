@@ -57,10 +57,10 @@ def logout_view(request):
 def dashboard(request):
     return render(request,"dashboard.html")
 
-def checkin (request):
+def checkin(request):
     return render(request,"check-in.html")
 
-def assignmentPressure (request):
+def assignmentPressure(request):
     return render(request,"assignment-pressure.html")
 
 def focusAnalytics(request):
