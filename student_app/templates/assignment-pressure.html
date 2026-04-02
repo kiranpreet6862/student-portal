@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>My Website</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/assignment-pressure.css' %}">
+</head>
+
+<body>
+
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+    
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">Assignment Pressure</p>
+            </div>
+            <div class="top-bar">
+                <div class="top-header">
+                    <span>Weekly Workload Capacity</span>
+                    <span>75% Full</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+
+            <section class="cards">
+                <div class="card-content">
+                    <div class="card-top">
+                        <span class="subject">Mathematics</span>
+                        <span class="badge-hard">Hard</span>
+                    </div>
+                    <h2>Calculus Problem Set</h2>
+                    <div class="card-info">
+                        <span>⏱ Due: May 20</span>
+                        <span>⏳ ~120 min</span>
+                    </div>
+                    <div class="pressure-row">
+                        <span>Pressure Level</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill red-fill" style="width: 85%;"></div>
+                    </div>
+                </div>        
+
+                <div class="card-content">
+                    <div class="card-top">
+                        <span class="subject">History</span>
+                        <span class="badge-hard orange-fill">Medium</span>
+                    </div>
+                    <h2>World War II Essay</h2>
+                    <div class="card-info">
+                        <span>⏱ Due: May 22</span>
+                        <span>⏳ ~90 min</span>
+                    </div>
+                    <div class="pressure-row">
+                        <span>Pressure Level</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill orange-fill" style="width: 60%;"></div>
+                    </div>    
+                </div>
+            
+                <div class="card-content">
+                    <div class="card-top">
+                        <span class="subject">Physics</span>
+                        <span class="badge-hard orange-fill">Medium</span>
+                    </div>
+                    <h2>Lab Report: Pendulums</h2>
+                    <div class="card-info">
+                        <span>⏱ Due: May 19</span>
+                        <span>⏳ ~60 min</span>
+                    </div>
+                    <div class="pressure-row">
+                        <span>Pressure Level</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill orange-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+               <div class="card-content">
+                    <div class="card-top">
+                        <span class="subject">Literature</span>
+                        <span class="badge-hard green-fill">Easy</span>
+                    </div>
+                    <h2>Reading Chapter 4-5</h2>
+                    <div class="card-info">
+                        <span>⏱ Due: May 25</span>
+                        <span>⏳ ~45 min</span>
+                    </div>
+                    <div class="pressure-row">
+                        <span>Pressure Level</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill green-fill" style="width: 20%;"></div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-top">
+                        <span class="subject">Computer Science</span>
+                        <span class="badge-hard red-fill">Hard</span>
+                    </div>
+                    <h2>Final Project Proposal</h2>
+                    <div class="card-info">
+                        <span>⏱ Due: May 18</span>
+                        <span>⏳ ~180 min</span>
+                    </div>
+                    <div class="pressure-row">
+                        <span>Pressure Level</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill red-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'javascript/assignment-pressure.js' %}"></script>
+
+</body>
+</html>

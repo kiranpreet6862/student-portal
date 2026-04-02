@@ -1,0 +1,97 @@
+body{
+  
+    background: linear-gradient(135deg, #1A1F27, #7A5CD6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+div{
+    width: 350px;
+    max-width: 90%;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+form{
+    padding: 20px;
+}
+
+#btn2{
+    margin-left: 30px;
+}
+
+#btn1,#btn2{
+   background: linear-gradient(135deg, #7A5CD6, #9f7aea);
+    color: white;
+    transition-duration: 1s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#btn1:hover,#btn2:hover{
+    scale: 1.2;
+    font-weight: bold;
+    background-color:white;
+    color: black;
+    cursor: pointer;
+
+}
+input{
+    background-color: #2a2f3a;
+    color: white;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    padding: 8px;
+    border-radius: 10px;
+}
+input:focus{
+    outline: none;
+    border-bottom: 2px solid #9f7aea;
+}
+
+/* ================= RESPONSIVE (768px) ================= */
+
+@media (max-width: 768px){
+
+  body{
+    padding: 20px;
+    height: auto;
+  }
+
+  div{
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    padding: 15px;
+  }
+
+  form{
+    padding: 10px;
+  }
+
+  input{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  #btn1, #btn2{
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #btn2{
+    margin-left: 0; 
+  }
+
+  h2{
+    font-size: 20px;
+  }
+}

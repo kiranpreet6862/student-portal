@@ -1,0 +1,152 @@
+body{
+    min-height: 100vh;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr; 
+    margin: 0;  
+    padding: 0;
+}
+
+
+#img-container{
+    height: 100%;
+    background-color: #7A5CD6;
+    position: relative;
+}
+#left{
+    height: 100%;
+    background-color: #1A1F27;
+}
+#form{
+    height: 60%;
+    width: 70%;
+    display: flex;
+    margin: 55px auto;
+    padding-left: 10px;
+    flex-direction: column;
+    justify-content: left;
+    gap: 15px;
+    color: white;  
+    box-shadow: black -12px -12px 8px;
+}
+#login-heading{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: -5px;
+   
+}
+#register-btn{
+    display: flex;
+    gap: 10px;
+    
+}
+#register-btn>p{
+    font-size: 12px;
+    margin-top: 28px;
+    margin-left: 15px
+}
+input{
+    height: 80%;
+    width: 80%;
+    /* border-radius: 20px; */
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom:1px solid #aaa;
+    background-color:#1A1F27;
+   
+}
+#btn2{
+    height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    background-color:#7A5CD6;
+    border: none;
+    color: white;
+    margin: 20px auto;
+    cursor: pointer;
+     transition-duration: 1s;
+    transition-property:all;
+    transition-timing-function: ease-in-out;
+}
+#btn1{
+    height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    background-color: #7A5CD6;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    margin-right: 25px;  
+    transition-duration: 1s;
+    transition-property:all;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+
+#btn1:hover,#btn2:hover{
+    scale: 1.05;
+    font-weight: bold;
+}
+
+#login-btn{
+    display: flex;
+    justify-content: center
+}
+#img-text{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 12%;
+    left: 15%;
+    color: white;
+    z-index: 2;
+    text-shadow: 0 15px 20px rgba(0,0,0,0.4);
+    line-height: 0.1;
+    
+    
+}
+#img-title{
+    
+    font-size: 45px;
+    font-weight: bold;
+}
+#img-heading{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+#login-img{
+    height: 60%;
+    width: 80%;
+    box-shadow: black 12px  12px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:55px auto;
+    
+    position: relative;
+    z-index: 1; 
+    
+}
+
+@media (max-width: 670px){
+    body{
+        grid-template-columns: 1fr;
+        
+    }
+
+    #img-container{
+        display: none ;
+    }
+    #left{
+        width: 100%;
+        padding: 20px;
+        
+    }
+}
+
+
+

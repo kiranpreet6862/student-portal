@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>My Website</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/focus-analytics.css' %}">
+</head>
+
+<body>
+
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+    
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">Focus Analytics</p>
+            </div>
+            <section class="main-content">               
+                <div class="sub-content" id="timer"> 
+                    <p>Focus Timer</p>
+                    <div id="display">00.00.00
+                    </div>
+                    <div id="controls">
+                        <button class="timerbtn" id="startBtn">Start</button>
+                        <button class="timerbtn" id="stopBtn">Stop</button>
+                        <button class="timerbtn" id="resetBtn">Reset</button>
+                    </div>       
+                </div>
+                <div class="sub-content" id="bar-graph">                       
+                </div>                
+                <div class="sub-content" id="pie-chart">
+                </div>
+                <div class="sub-content" id="insights">
+                    <p>Insights</p>
+                    <div class="insight">
+                        <span class="text">🏆 Consistency Score</span>
+                        <span class="sub-text">82/100</span>
+                    </div>
+                    <hr>
+
+                    <div class="insight">
+                        <span class="text">🧠 Deep Work</span>
+                        <span class="sub-text">8.2 hrs</span>
+                    </div>
+                    <hr>
+
+                    <div class="insight">
+                        <span class="text">⏰ Best Time</span>
+                        <span class="sub-text">10:00 AM - 12:00 PM</span>
+                    </div>
+                    <hr>
+
+
+                </div>                  
+            </section>
+
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{% static 'javascript/focus-analytics.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Breathing</title>
+
+      {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/start-breathing.css' %}">
+</head>
+<body>
+
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+        <main>
+            <div id="intro">
+                <h2> What Is 4-7-8 Breathing?</h2>
+                <p>The 4-7-8 breathing technique is based on <span>pranayama </span>breathing exercises. Pranayama is the ancient yogic practice of controlling 
+                your breath. These types of <span>mindful breathing </span>exercises have been shown to have many benefits for stress reduction and relaxation. 
+                The 4-7-8 breathing technique was developed by Andrew Weil, MD. He refers to it as a "natural tranquilizer for the nervous system."
+                </p>
+                <img src="{% static 'images/breath.png' %}" id="login-img">
+            </div>   
+            <div id="method">
+                <h2>How to Practice 4-7-8 Breathing</h2>
+                <p>You can practice 4-7-8 breathing anytime, anywhere. When you're first learning, try to practice at least twice a day, 
+                    but you can do it as often as you want. Only do it for four cycles in a row in the beginning. After you get used to it, 
+                    you can work up to eight cycles. You may feel lightheaded at first, but this will pass. </p>
+                <ul>
+                    <li>Find a comfortable place to sit with your back straight. </li>
+                    <li>Place your tongue against the back of your top teeth and keep it there. </li>
+                    <li>Exhale completely through your mouth around your tongue, making a whoosh sound. Purse your lips if it helps. </li>
+                    <li>Close your lips and inhale through your nose for a count of four.</li>
+                    <li>Hold your breath for a count of seven.</li>
+                    <li>Exhale completely through your mouth, making a whoosh sound for a count of eight. </li>
+                    <li>This completes one cycle. Repeat for three more cycles.</li>
+                </ul>
+                <p> Do 4-7-8 breathing anytime you feel stressed. It will become more powerful as you use it. Practice doing it before you 
+                respond to an upsetting situation and whenever you're having trouble getting to sleep.</p>
+            </div> 
+            <div id="benefits">
+                <h2>What Are the Benefits of 4-7-8 Breathing and Deep, Slow Breathing?</h2>
+                <p>Mindful breathing practices, such as 4-7-8 breathing, can produce what Harvard cardiologist Herbert Benson called 
+                    the relaxation response. You have a natural<span> stress response </span>that can help you deal with dangerous situations. This 
+                    fight-or-flight response can help you survive but can take a toll on your health when it's overused for <span>everyday stresses.</span><br>
+                    This stress response suppresses your <span>immune system </span>and can cause other health problems, including <span>high blood pressure, 
+                    depression,</span> and <span>anxiety.</span> The relaxation response interrupts this stress response with a profound sense of rest. Other
+                    benefits may include: </p>   
+                <ul>
+                    <li><b>Reduced anxiety:</b> A study of college students showed that practicing pranayama reduced test anxiety in students.
+                        Another study of senior citizens showed reduced anxiety after two months of deep breathing exercises.</li>
+                    <li><b>Lower blood pressure:</b> Slow deep breathing for five minutes has been shown to lower blood pressure and heart rate 
+                        in people who practice it. </li>
+                    <li><b>Improved sleep:</b> One of the negative side effects of stress can be trouble<span> sleeping.</span> It can be almost impossible
+                        to fall asleep when your body is caught up in the stress response. Practicing deep, slow breathing techniques such as 
+                        4-7-8 breathing can trigger your body's relaxation response and help you get to sleep.</li>
+                    <li><b>Less pain:</b>A study of 16 healthy people found that those who practiced relaxed deep breathing experienced less <span> pain </span>
+                        than those who practiced deep breathing that required a lot of sustained attention. Both groups experienced less tension,
+                        anger, and depression.</li>
+                    <li><b>Better concentration:</b> A 2017 study examined the effect of eight weeks of deep, slow, abdominal breathing on 
+                        <span>attention,</span> emotions, and stress levels. After training, the people in the deep breathing group performed better on tests 
+                        of attention and had fewer negative emotions.</li>
+                </ul>
+            </div>
+            <div id="affect">
+                <h2>How 4-7-8 Breathing and Deep, Slow Breathing Affect Your Body</h2>
+                <p>The sort of deep breathing practiced as part of the 4-7-8 breathing technique helps calm your body by activating your 
+                    parasympathetic nervous system. Your body's automatic functions, such as your heartbeat and digestion, are controlled by
+                    your autonomic nervous system. This system has two parts, the sympathetic nervous system and the parasympathetic nervous 
+                    system.<br>
+                    The sympathetic nervous system controls your body's stress response. The parasympathetic nervous system controls your body's 
+                    rest and relaxation response. When you activate one of these, you suppress the other. This is why deep breathing is so 
+                    effective at causing the relaxation response.<br>
+                    The 4-7-8 breathing technique is one method of deep breathing that you can use to reap such benefits. However, the particular 
+                    method you use doesn't matter. If the 4-7-8 method doesn't work well for you, you can try another. You should experience the 
+                    relaxation response with any breathing method that is slow and deep.
+                </p>
+            </div>
+            <div id="faq-s">  
+                <h3>4-7-8 Breathing FAQs</h3>
+                <h4>Is 4-7-8 breathing good for the lungs?      </h4>
+                <p>Doing 4-7-8 breathing with good posture helps line up your lungs up properly in your body so they work their best. 
+                    The 4-7-8 practice also helps the lungs empty completely, for healthier breathing.</p>
+                <h4>Which is better, box breathing or 4-7-8?</h4>
+                <p>It depends on what you want to focus on. Both of the breathing practices are used to reduce stress. While 4-7-8 breathing 
+                    is known to also help people relax, box breathing is said to also help improve concentration.</p>
+                <h4>What is alternate nasal breathing?</h4>
+                <p>Alternate nasal breathing involves gently pressing on one nostril to close it and take a slow, deep breath out of the other 
+                    nostril, then exhale slowly. Then switch nostrils. This type of breathing, such as 4-7-8 breathing, can help lower stress, 
+                    blood pressure, and heart rate, and make your lungs work better.</p> 
+            </div>
+        </main> 
+
+
+
+    <script src="{% static 'javascript/start-breathing.js' %}"></script>
+
+<p>{{ error }}</p>
+
+</body>
+</html>    

@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>Profile</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+</head>
+
+<body>
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+        <main class="settings-main">
+            <div class="settings-card">
+                <h2>Settings</h2>
+                <!-- 🔹 Edit Profile -->
+                <div class="section">
+                    <h3>Edit Profile</h3>
+                    <div class="profile-edit">
+                        <div class="left">
+                            <input type="file" id="fileInput" hidden>
+                            <div class="profile-img">
+                                <span id="icon"class="material-icons-outlined" >account_circle</span>
+                                <img id="image"class="hide">
+                            </div>  
+                            {% comment %} upload button {% endcomment %}
+                            <button class="upload-btn" onclick="fileInput.click()"><span class="material-icons-outlined">upload</span>Change Photo</button>
+                        </div>
+                        <div class="right">
+                            <label>Username</label>
+                            <input type="text" value="Rahul">
+                            <label>Email</label>
+                            <input type="email" value="rahul@gmail.com">
+                            <label>Age</label>
+                            <input type="number" value="20">
+                            <label>Mobile Number</label>
+                            <input type="text" value="4512788956">
+                            <label>Location</label>
+                            <input type="text" value="Mohali">
+                            <button class="save-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🔹 Change Password -->
+                <div class="pwd-section">
+                    <h3>Change Password</h3>
+                    <label for="n-pwd">New Password: </label>
+                    <input type="password" name="n-pwd" placeholder="********"><br><br>
+                    <label for="c-pwd">Confirm Password: </label>
+                    <input type="password" name="c-pwd" placeholder="********">
+                    <button class="save-btn">Update Password</button>
+                </div>
+
+                <!-- 🔹 Preferences -->
+                <div class="section">
+                    <h3>Preferences</h3>
+                    <div class="toggle-row">
+                        <span>🌙 Dark Mode</span>
+                        <label class="switch">
+                        <input type="checkbox" id="darkToggle">
+                        <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>🔔 Notifications</span>
+                        <label class="switch">
+                            <input type="checkbox" id="notificationToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 🔹 Logout -->
+                <div class="section">
+                    <h3>Logout</h3>
+                    <button class="logout-btn"><a href="{% url 'login' %}">Log Out</a></button>
+                </div>
+            </div>
+        </main>       
+
+    <script src="{% static 'javascript/settings.js' %}"></script>
+
+</body>
+</html>    

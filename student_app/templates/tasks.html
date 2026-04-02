@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>Profile</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+</head>
+
+<body>
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+
+        <main>
+        <h3>🎯 📘 Physics Deadline – Task Guide</h3>
+        <h4>🧾 Overview</h4>
+        <p>Your Physics Lab Report is due tomorrow, so it's important to complete it efficiently without stress.
+            Instead of doing everything at once, break the work into smaller, manageable steps.</p>
+        <hr>
+        <h3>🧩 Step-by-Step Task Breakdown</h3>
+
+        <h4>🔹 1. Understand the Experiment</h4>
+
+            <p>Carefully read your lab manual and understand:</p>
+        <ul>
+            <li> Aim of the experiment</li>
+            <li>Key concepts and formulas</li>
+            <li>Required observations</li>
+        </ul>    
+        <p>👉 This step helps you avoid mistakes later.</p>
+        <hr>
+
+        <h4>🔹 2. Perform Calculations</h4>
+
+            <p>Now solve all required numerical problems:</p>
+        <ul>
+            <li> Apply correct formulas</li>
+            <li>Check units and accuracy</li>
+            <li>Recalculate if needed</li>
+        </ul>    
+        <p>👉 Accuracy is important for better marks.</p>
+        <hr>
+
+        <h4>🔹 3. Write the Report</h4>
+
+            <p>Structure your report properly:</p>
+        <ul>
+            <li> <b>Introduction </b>– What the experiment is about</li>
+            <li><b>observation</b> – Data collected</li>
+            <li><b>Result</b> – Final answer</li>
+            <li><b>Conclusion</b> – What you learned</li>
+        </ul>    
+        <p>👉 Keep it neat and well-organized.</p>
+        <hr>
+
+        <h3>⚡ 💡 Smart Techniques to Finish Faster</h3>
+
+
+        <h4>⏳ Pomodoro Technique</h4>
+        <p>Work for 25 minutes, then take a 5-minute break.</p>
+        <p>Repeat 3–4 times.</p>
+        <p>👉 Helps maintain focus and avoid burnout.</p>
+        <hr>
+
+        <h4>🎯 Break into Small Tasks (Chunking)</h4>
+
+        <p>Divide your work into small parts instead of doing everything together.</p>
+        <p>👉 Makes the task feel easier and less stressful.</p>
+        <hr>
+
+        <h4>🚀 Start Immediately (2-Minute Rule)</h4>
+
+        <p>If starting feels difficult, just begin for 2 minutes.</p>
+
+        <p>👉 Once you start, it becomes easier to continue.</p>
+        <hr>
+
+        <h4>📵 Avoid Distractions</h4>
+        <ul>
+            <li>Keep your phone on silent</li>
+            <li>Avoid social media</li>
+            <li>Study in a quiet place</li>
+        </ul>
+        <p>👉 Improves concentration and saves time.</p>
+        <hr>
+
+        <h4>📝 Active Recall</h4>
+
+        <p>Instead of just reading, ask yourself questions:</p>
+        <ul>
+            <li>What is the formula?</li>
+            <li>Why is this step used?</li>
+        </ul>
+        <p>👉 Helps you remember better.</p>
+
+        <h3>📌 Final Tip</h3>
+        <p>Focus on completing the report step by step instead of rushing.</p>
+        <p>Start early, stay consistent, and you’ll finish on time with good quality work.</p>    
+        
+    </main>
+
+
+        
+
+
+
+    
+         
+
+    <script src="{% static 'javascript/tasks.js' %}"></script>
+
+</body>
+</html>    

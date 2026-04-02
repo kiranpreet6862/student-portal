@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>My Website</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/smart-suggestions.css' %}">
+</head>
+
+<body>
+
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+           <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>        
+            </ul>
+        </aside>
+    
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">Smart Suggestions</p>
+            </div>
+            <div class="main-content">
+                <div class="card" id="card-1">
+                    <p>WELLNESS</p>
+                    <span class="heading">Take a Breather</span>
+                    <span class="text">You've been studying for 3 hours straight. Try the 4-7-8 breathing technique.</span>
+                    <button id="btn1" onclick="window.location.href='{% url 'start-breathing' %}'">Start Breathing</button>
+                </div>
+                <div class="card" id="card-2">
+                    <p>Academic</p>
+                    <span class="heading">Physics Deadline</span>
+                    <span class="text">Your Physics Lab Report is due tomorrow. Break it down into 3 small tasks.</span>
+                    <button id="btn2"><a href="{% url 'tasks' %}">View Tasks </a></button>
+                </div>
+                <div class="card" id="card-3">
+                    <p>Alarm</p>
+                    <span class="heading">Sleep Debt Alert</span>
+                    <span class="text">You averaged 6 hours of sleep this week. Try to get 8 hours tonight for better memory retention.</span>
+                    <input type="time" id="alarmTime">
+                    <button id="btn3" onclick="setAlarm()">Set Alarm</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+
+    <script src="{% static 'javascript/smart-suggestions.js' %}"></script>
+
+</body>
+</html>

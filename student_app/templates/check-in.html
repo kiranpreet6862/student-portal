@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% comment %} -- Meta --- {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% comment %} -- Title -- {% endcomment %}
+
+    <title>My Website</title>
+
+    {% comment %} ----------Monteserrat font--------- {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    {% comment %} -------------material icons-------  {% endcomment %}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    {% comment %} ----------------------css-------------- {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/check-in.css' %}">
+</head>
+
+<body>
+
+    <div class="grid-container">
+    
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div> 
+
+            <div id="header-right">
+                <div class="notification-container">
+                    <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
+                    <div id="notificationBox" class="notification-box">
+                        <h4>Notifications</h4>
+                        <p>No new notifications</p>
+                    </div>
+                </div>
+                <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
+                <div class="profile-container">
+                    <span class="material-icons-outlined" onclick="toggleProfile()">account_circle</span>
+                    <div id="profileDropdown" class="profile-dropdown">
+                        <p><a href="{% url 'profile' %}">Profile</a></p>
+                        <p><a href="{% url 'settings' %}">Settings</a></p>
+                        <hr>
+                        <p><a href="{% url 'login' %}">Logout</a></p>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">school</span> StudentMe
+                </div>
+            </div>
+
+            <ul class="sidebar-list">
+                <li  class="sidebar-list-item">
+                    <a href="{% url 'dashboard' %}"><span class="material-icons-outlined">dashboard</span>Dashboard</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'check-in' %}"><span class="material-icons-outlined">checklist</span>Daily Check-in</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'assignment-pressure' %}"><span class="material-icons-outlined">assignment</span>Assignment Pressure</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'focus-analytics' %}"><span class="material-icons-outlined">query_stats</span>Focus Analytics</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'wellness-report' %}"><span class="material-icons-outlined">self_improvement</span>Wellness Report</a>
+                </li>
+                <li class="sidebar-list-item">
+                    <a href="{% url 'smart-suggestions' %}"><span class="material-icons-outlined">lightbulb</span>Smart Suggestions</a>
+                </li>
+            
+
+            </ul>
+
+        </aside>
+    
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">Daily Check-in</p>
+            </div>
+
+            
+            <div class="main-content-container">
+                <p> How are you feeling today? </p> 
+                <div id="emoji">😐</div>
+                <input type="range" min="0" max="2" value="1" id="moodSlider">
+                <div class="labels">
+                    <span>Stressed</span>
+                    <span>Neutral</span>
+                    <span>Great</span>
+                </div>
+                <label for="study-hours" class="label">Sleep Hours(Last Night)</label>
+                <div class="input-group">
+                    <span class="material-icons-outlined">bed</span>
+                    <input type="text" id="sleep-hours" placeholder="e.g., 7.5">
+                </div>
+                <label for="study-hours" class="label">Study Hours Today</label>
+                <div class="input-group">
+                    <span class="material-icons-outlined">menu_book</span>
+                    <input type="text" id="study-hours" placeholder="e.g. 4">
+                </div>
+
+                <label for="workload" class="label">Workload Intensity</label>
+                <select id="workload" class="dropdown">
+                    <option>Light (Review/Reading)</option>
+                    <option selected>Moderate (Homework/Practice)</option>
+                    <option>Heavy (Projects/Exams)</option>
+                </select>
+                <div class="wellness-box">
+                    <span class="material-icons-outlined">edit</span>
+                    <p>
+                        Predicted Wellness Score: 
+                        <strong id="score">Calculating...</strong>
+                    </p>
+                </div>
+                <button type="button"> Save Check-in</button>
+            </div>
+            
+            
+        </main>
+    </div>
+
+    <script src="{% static 'javascript/check-in.js' %}"></script>
+
+</body>
+</html>

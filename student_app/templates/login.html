@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<div id="left">    
+    <form id="form" method="POST">
+    {% csrf_token %}
+
+    
+        <p id="login-heading"> Login</p>
+        <p id="login-subheading"> Enter your account details</p>
+        <input type="text" name="username" placeholder="   Username">
+    
+        <input type="password" name="password" placeholder="  Password">
+        <div id="login-btn">
+        <button type="submit" id="btn1">Login</button>
+        </div>
+        <div id="register-btn">
+            <p> Don't have an account?</p>
+            <button type="button" id="btn2" onclick="window.location.href='{% url 'register' %}'">Register</button>
+        </div>
+    </form> 
+</div>
+<div id="img-container">
+    <div id="img-text">
+        <p id="img-title">Welcome to </p>
+        <p id="img-heading">Student portal</p>   
+    </div>
+    <img src="{% static 'images/login-img.png' %}" id="login-img">
+
+</div>
+
+
+<p>{{ error }}</p>
+
+
+
+
+
+
+
+</body>
+</html>
