@@ -91,114 +91,94 @@
         <main class="main-container">
             <div class="main-title">
                 <p class="font-weight-bold">Assignment Pressure</p>
+                <button class="add-btn" onclick="openAssignmentModal()"> + Add Assignment</button>
             </div>
             <div class="top-bar">
                 <div class="top-header">
                     <span>Weekly Workload Capacity</span>
-                    <span>75% Full</span>
+                    <span>{{ capacity }}% Full</span>
                 </div>
 
                 <div class="progress">
-                    <div class="progress-fill" style="width: 75%;"></div>
+                    <div class="progress-fill {%if capacity < 40 %}green-fill{%elif capacity < 75 %}orange-fill{%else%}red-fill{%endif%}" style="width: {{ capacity }}%;"></div>
                 </div>
             </div>
 
-            <section class="cards">
+            <section class="cards" name="assignments">
+                {% for item in assignments %}
                 <div class="card-content">
-                    <div class="card-top">
-                        <span class="subject">Mathematics</span>
-                        <span class="badge-hard">Hard</span>
+                    <div class="card-top">                      
+                        <span class="subject">{{ item.subject }}</span>
+                        <span class="{% if item.difficulty == 1 %}badge-easy{% elif item.difficulty == 2 %}badge-medium{% else %}badge-hard{% endif %}">
+                            {% if item.difficulty == 1 %}
+                            Easy
+                            {% elif item.difficulty == 2 %}
+                            Medium
+                            {% else %}
+                            Hard  
+                            {% endif %}
+                        </span>
                     </div>
-                    <h2>Calculus Problem Set</h2>
+                    <h2>{{ item.title }}</h2>
                     <div class="card-info">
-                        <span>⏱ Due: May 20</span>
-                        <span>⏳ ~120 min</span>
+                        <span>⏱ Due: {{ item.due_date }}</span>
+                        <span>⏳ ~{{ item.estimated_time }} min</span>
                     </div>
                     <div class="pressure-row">
                         <span>Pressure Level</span>
-                        <span>85%</span>
+                        <span>{{item.pressure_level}}%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill red-fill" style="width: 85%;"></div>
-                    </div>
-                </div>        
-
-                <div class="card-content">
-                    <div class="card-top">
-                        <span class="subject">History</span>
-                        <span class="badge-hard orange-fill">Medium</span>
-                    </div>
-                    <h2>World War II Essay</h2>
-                    <div class="card-info">
-                        <span>⏱ Due: May 22</span>
-                        <span>⏳ ~90 min</span>
-                    </div>
-                    <div class="pressure-row">
-                        <span>Pressure Level</span>
-                        <span>60%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill orange-fill" style="width: 60%;"></div>
-                    </div>    
-                </div>
-            
-                <div class="card-content">
-                    <div class="card-top">
-                        <span class="subject">Physics</span>
-                        <span class="badge-hard orange-fill">Medium</span>
-                    </div>
-                    <h2>Lab Report: Pendulums</h2>
-                    <div class="card-info">
-                        <span>⏱ Due: May 19</span>
-                        <span>⏳ ~60 min</span>
-                    </div>
-                    <div class="pressure-row">
-                        <span>Pressure Level</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill orange-fill" style="width: 70%;"></div>
+                        <div class={%if item.difficulty == 1%}"progress-fill green-fill"{%elif item.difficulty == 2%}"progress-fill orange-fill"{%else%}"progress-fill red-fill"{%endif%} style="width: {{item.pressure_level}}%;"></div>
                     </div>
                 </div>
-
-               <div class="card-content">
-                    <div class="card-top">
-                        <span class="subject">Literature</span>
-                        <span class="badge-hard green-fill">Easy</span>
-                    </div>
-                    <h2>Reading Chapter 4-5</h2>
-                    <div class="card-info">
-                        <span>⏱ Due: May 25</span>
-                        <span>⏳ ~45 min</span>
-                    </div>
-                    <div class="pressure-row">
-                        <span>Pressure Level</span>
-                        <span>20%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill green-fill" style="width: 20%;"></div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="card-top">
-                        <span class="subject">Computer Science</span>
-                        <span class="badge-hard red-fill">Hard</span>
-                    </div>
-                    <h2>Final Project Proposal</h2>
-                    <div class="card-info">
-                        <span>⏱ Due: May 18</span>
-                        <span>⏳ ~180 min</span>
-                    </div>
-                    <div class="pressure-row">
-                        <span>Pressure Level</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill red-fill" style="width: 90%;"></div>
-                    </div>
-                </div>
+                {% endfor %}
             </section>
         </main>
+    </div>
+
+    <div id="assignmentModal" class="modal" {% if show_modal %} style="display:flex;" {% else %} style="display:none;" {% endif %}>
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>📚 Add Assignment<span onclick="closeAssignmentModal()">✖</span></h3>
+                
+            </div>
+            <form method="POST" >       
+            {% csrf_token %}
+                <label>Subject</label>
+                <input type="text" name="subject" required>
+
+                <label>Title</label>
+                <input type="text" name="title" required>
+
+                <label>Due Date</label>
+                <input type="date" name="due_date" required>
+
+                <label>Estimated Time (minutes)</label>
+                <input type="number" name="time" required>
+
+                <label>Difficulty</label>
+                <select name="difficulty">
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+                <div class="pressure-level">
+                    <span class="material-icons-outlined">edit</span>
+                    <p>
+                        Pressure Level: 
+                        <strong id="score">
+                            {% if pressure %}
+                                {{ pressure }}% 
+                            {% else %}
+                                Calculating...
+                            {% endif %}
+                        </strong>
+                    </p>
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
     </div>
 
     <script src="{% static 'javascript/assignment-pressure.js' %}"></script>

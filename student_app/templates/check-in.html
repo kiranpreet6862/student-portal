@@ -8,7 +8,7 @@
     
     {% comment %} -- Title -- {% endcomment %}
 
-    <title>My Website</title>
+    <title>Daily Check-in</title>
 
     {% comment %} ----------Monteserrat font--------- {% endcomment %}
 
@@ -91,44 +91,64 @@
                 <p class="font-weight-bold">Daily Check-in</p>
             </div>
 
-            
-            <div class="main-content-container">
-                <p> How are you feeling today? </p> 
-                <div id="emoji">😐</div>
-                <input type="range" min="0" max="2" value="1" id="moodSlider">
-                <div class="labels">
-                    <span>Stressed</span>
-                    <span>Neutral</span>
-                    <span>Great</span>
-                </div>
-                <label for="study-hours" class="label">Sleep Hours(Last Night)</label>
-                <div class="input-group">
-                    <span class="material-icons-outlined">bed</span>
-                    <input type="text" id="sleep-hours" placeholder="e.g., 7.5">
-                </div>
-                <label for="study-hours" class="label">Study Hours Today</label>
-                <div class="input-group">
-                    <span class="material-icons-outlined">menu_book</span>
-                    <input type="text" id="study-hours" placeholder="e.g. 4">
-                </div>
+            <form method="POST" >
+                {% csrf_token %}
 
-                <label for="workload" class="label">Workload Intensity</label>
-                <select id="workload" class="dropdown">
-                    <option>Light (Review/Reading)</option>
-                    <option selected>Moderate (Homework/Practice)</option>
-                    <option>Heavy (Projects/Exams)</option>
-                </select>
-                <div class="wellness-box">
-                    <span class="material-icons-outlined">edit</span>
-                    <p>
-                        Predicted Wellness Score: 
-                        <strong id="score">Calculating...</strong>
-                    </p>
+                <div class="main-content-container">
+                    <p> How are you feeling today? </p> 
+                    <div id="emoji">😐</div>
+                    <!-- Mood -->
+                    <input type="range" step="1" min="1" max="3" value="1" id="moodSlider" name="mood">
+                    <div class="labels">
+                        <span>Stressed</span>
+                        <span>Neutral</span>
+                        <span>Great</span>
+                    </div>
+                    <!-- Sleep -->
+                    <label class="label">Sleep Hours (Last Night)</label>
+                    <div class="input-group">
+                        <span class="material-icons-outlined">bed</span>
+                        <input type="number" id="sleep-hours" name="sleep" placeholder="e.g., 7.5">
+                    </div>
+                    <!-- Study -->
+                    <label class="label">Study Hours Today</label>
+                    <div class="input-group">
+                        <span class="material-icons-outlined">menu_book</span>
+                        <input type="text" id="study-hours" name="study" placeholder="e.g. 4">
+                    </div>
+                    <!-- Workload -->
+                    <label class="label">Workload Intensity</label>
+                    <select id="workload" name="workload" class="dropdown">
+                        <option value="1">Light (Review/Reading)</option>
+                        <option value="2" selected>Moderate (Homework/Practice)</option>
+                        <option value="3">Heavy (Projects/Exams)</option>
+                    </select>
+                    <!-- Score -->
+                    <div class="wellness-box">
+                        <span class="material-icons-outlined">edit</span>
+                        <p>
+                            Predicted Wellness Score: 
+                            <strong id="score">
+                                {% if score %}
+                                    {{ score }}% 
+                                {% else %}
+                                    Calculating...
+                                {% endif %}
+                            </strong>
+                        </p>
+                         
+                    </div>
+                    <h6 id="suggestions">Suggestions:
+                            <ul>
+                                {% for s in suggestions %}
+                                <li>{{ s }}</li>
+                                {% endfor %}
+                            </ul> 
+                    </h6>         
+                    <!-- Button -->
+                    <button type="submit">Save Check-in</button>
                 </div>
-                <button type="button"> Save Check-in</button>
-            </div>
-            
-            
+            </form>
         </main>
     </div>
 

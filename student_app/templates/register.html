@@ -16,11 +16,11 @@
 <form method="POST">
     {% csrf_token %}
     <label for="username">Username:</label>
-    <input type="text" name="username" placeholder="Username" required><br><br>
+    <input type="text" name="username"  id="input1" required><br><br>
     <label for="email">Email:</label>
-    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="email" name="email"  id="input2" required><br><br>
     <label for="password">Password:</label>
-    <input type="password" name="password" placeholder="Password" required><br><br>
+    <input type="password" name="password"  id="input3" required><br><br>
     <button type="submit" id="btn1">Register</button>
     <button type="button" id="btn2" onclick="window.location.href='{% url 'login' %}'">Login</button>
 </form>

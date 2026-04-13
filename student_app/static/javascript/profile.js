@@ -61,20 +61,3 @@ fileInput.addEventListener("change", function(){
     }
 });
 
-
-const removeBtn = document.querySelector(".remove-btn");
-
-removeBtn.addEventListener("click", function(){
-
-    // image hide
-    image.classList.add("hide");
-
-    // icon show
-    icon.classList.remove("hide");
-
-    // image src clear
-    image.src = "";
-
-    // file input reset (IMPORTANT)
-    fileInput.value = "";
-});

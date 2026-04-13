@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from student_app import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',views.login_view, name='login'),
-    path('register/',views.register, name='register'),
+    path('',views.register, name='register'),
     path('logout/',views.logout,name='logout'),
     path('dashboard/',views.dashboard, name='dashboard'),
     path('check-in/',views.checkin, name='check-in'),
@@ -32,6 +34,8 @@ urlpatterns = [
     path('start-breathing/',views.startBreathing, name="start-breathing"),
     path('tasks/',views.tasks,name="tasks"),
     path('profile/',views.profile,name="profile"),
-    path('settings/',views.settings, name="settings"),
+    path('settings/',views.settings_view, name="settings"),
+    
     
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

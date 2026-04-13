@@ -25,6 +25,13 @@
 </head>
 
 <body>
+    {% comment %} {% if messages %}
+    {% for message in messages %}
+    <script>
+      alert("{{ message }}");
+    </script>
+    {% endfor %}
+    {% endif %} {% endcomment %}
     <div class="grid-container">
     
         <header class="header">
@@ -92,41 +99,47 @@
                 <!-- 🔹 Edit Profile -->
                 <div class="section">
                     <h3>Edit Profile</h3>
-                    <div class="profile-edit">
+                    <form method="POST" enctype="multipart/form-data" class="profile-edit" >
+                        {% csrf_token %}
                         <div class="left">
-                            <input type="file" id="fileInput" hidden>
+                            <input type="file" id="fileInput" name="profile_pic" hidden>
                             <div class="profile-img">
-                                <span id="icon"class="material-icons-outlined" >account_circle</span>
-                                <img id="image"class="hide">
+                                {% if profile.profile_pic %}
+                                <img id="image" src="{{ profile.profile_pic.url }}" class="show"style="width:100px; height:100px; border-radius:50%; object-fit:cover; display:block;">
+                                {% else %}
+                                <img id="image" src="/media/profile_pics/default.png" class="show"style="width:100px; height:100px; border-radius:50%; object-fit:cover; display:block;">
+                                {% endif %}
+                                <span id="icon" style="display:none;" class="{% if profile.profile_pic %}hide{% else %}show{% endif %}">account_circle</span>
                             </div>  
-                            {% comment %} upload button {% endcomment %}
-                            <button class="upload-btn" onclick="fileInput.click()"><span class="material-icons-outlined">upload</span>Change Photo</button>
+                            <button class="upload-btn" type="button" onclick="fileInput.click()"><span class="material-icons-outlined">upload</span>Change Photo</button>
                         </div>
                         <div class="right">
-                            <label>Username</label>
-                            <input type="text" value="Rahul">
+                            
+                            <label>Name</label>
+                            <input type="text" name="username" value="{{ request.user.username }}">
                             <label>Email</label>
-                            <input type="email" value="rahul@gmail.com">
+                            <input type="email" name="email" value="{{ request.user.email }}">
                             <label>Age</label>
-                            <input type="number" value="20">
+                            <input type="number" name="age" value="{{ profile.age }}">
                             <label>Mobile Number</label>
-                            <input type="text" value="4512788956">
+                            <input type="text" name="mobile" value="{{ profile.mobile }}">
                             <label>Location</label>
-                            <input type="text" value="Mohali">
-                            <button class="save-btn">Save Changes</button>
+                            <input type="text" name="location" value="{{ profile.location }}">
+                            <button name="update_profile" type="submit" class="save-btn">Save Changes</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- 🔹 Change Password -->
-                <div class="pwd-section">
+                <form method="POST"class="pwd-section">
+                    {% csrf_token %}
                     <h3>Change Password</h3>
-                    <label for="n-pwd">New Password: </label>
-                    <input type="password" name="n-pwd" placeholder="********"><br><br>
+                    <label for="n-pwd"><b>New Password: </b></label>
+                    <input type="password" name="new_password" placeholder="New Password"><br><br>
                     <label for="c-pwd">Confirm Password: </label>
-                    <input type="password" name="c-pwd" placeholder="********">
-                    <button class="save-btn">Update Password</button>
-                </div>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password">
+                    <button name="change_password" type="submit" class="save-btn">Update Password</button>
+                </form>
 
                 <!-- 🔹 Preferences -->
                 <div class="section">

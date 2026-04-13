@@ -91,25 +91,25 @@
 
             <div class="profile-card">
                 <h2>Profile Details</h2>
-                <div class="profile-content">
+                <form class="profile-content" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="profile-left">
-                        <input type="file" id="fileInput" hidden>
+                        <input type="file" id="fileInput" name="image" hidden>
                         <div class="profile-img">
-                            <span id="icon"class="material-icons-outlined" >account_circle</span>
-                            <img id="image"class="hide">
+                            {% if profile.image %}
+                            <img src="{{ profile.image.url }}" id="image">
+                            {% else %}
+                            <img src="/media/profile_pics/default.png" id="image">
+                            {% endif %}
                         </div>  
-                        {% comment %} upload button {% endcomment %}
-                        <button class="upload-btn" onclick="fileInput.click()"><span class="material-icons-outlined">upload</span>Upload Photo</button>
-                        <button class="remove-btn">Remove Photo</button>  
-                    </div>
-                    
-                </div>
+                    </div>                  
+                </form>
                 <div class="profile-right">
-                    <p><span>Username:</span> Rahul</p>
-                    <p><span>Email:</span> rahul@gmail.com</p>
-                    <p><span>Age:</span> 20</p>
-                    <p><span>Mobile Number:</span> 4512788956</p>
-                    <p><span>Location:</span> Mohali</p>
+                    <p><span>Username:</span> {{ request.user.username }}</p>
+                    <p><span>Email:</span> {{ request.user.email }}</p>
+                    <p><span>Age:</span> {{ profile.age|default:"Not added" }}</p>
+                    <p><span>Mobile Number:</span> {{ profile.mobile|default:"Not added" }}</p>
+                    <p><span>Location:</span> {{ profile.location|default:"Not added" }}</p>
                 </div>
             </div>
         </main>

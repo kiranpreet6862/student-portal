@@ -42,3 +42,11 @@ window.onload = () => {
     document.getElementById("themeIcon").textContent = "light_mode";  
   }  
 };
+
+function openAssignmentModal() {
+  document.getElementById("assignmentModal").style.display = "flex";
+}
+
+function closeAssignmentModal() {
+  document.getElementById("assignmentModal").style.display = "none";
+}

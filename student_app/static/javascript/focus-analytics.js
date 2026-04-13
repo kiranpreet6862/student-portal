@@ -65,12 +65,28 @@ startBtn.addEventListener("click", () => {
     }
 });
 
-stopBtn.addEventListener("click", () => {
-    if(!paused){
-        paused=true;
-        elapsedTime = Date.now() - startTimer;
-        clearInterval(intervalId)
-    }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const stopBtn = document.getElementById("stopBtn");
+
+    stopBtn.addEventListener("click", () => {
+        console.log("STOP CLICKED ");   // test
+
+        if(!paused){
+            paused = true;
+            elapsedTime = Date.now() - startTimer;
+            clearInterval(intervalId);
+
+            let minutes = Math.ceil(elapsedTime / (1000 * 60));
+
+            console.log("Minutes:", minutes);
+
+            document.getElementById("durationInput").value = minutes;
+            document.getElementById("focusForm").submit();
+        }
+    });
+
 });
 
 resetBtn.addEventListener("click", () => {
@@ -121,11 +137,11 @@ var options = {
 
   series: [{
     name: "Hours Focused",
-    data: [2.5, 3, 1.5, 4, 3.5, 0, 0]
+    data: weeklyData
   }],
 
   xaxis: {
-    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    categories: weekLabels,
     labels: {
       style: {
         colors: isDark ? '#e2e8f0' : '#333'
@@ -186,7 +202,7 @@ function updateBarChartTheme() {
 
   barChart.updateOptions({
     xaxis: {
-      categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      categories:weekLabels ,
       labels: {
         style: {
           colors: isDark ? '#e2e8f0' : '#333'
@@ -223,12 +239,12 @@ function updateBarChartTheme() {
 
 
 // .........................pie chart.........................
+
 let pieChart;
 function renderPieChart() {
   const isDark = document.body.classList.contains("dark-mode");
-
 var options = {
-  series: [40, 30, 20, 10],
+  series: pieData,
 
   chart: {
     height:200,
@@ -260,7 +276,7 @@ var options = {
   tooltip: {
     y: {
       formatter: function(val) {
-        return val + "%";
+        return val + "min";
       }
     }
   },
@@ -334,3 +350,14 @@ window.onload = () => {
     updatePieChartTheme();
   }, 50);
 };
+
+function openModal() {
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+function updateValue(slider, id) {
+  document.getElementById(id).innerText = slider.value + " min";
+}

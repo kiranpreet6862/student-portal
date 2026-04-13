@@ -106,7 +106,8 @@ fileInput.addEventListener("change", function(){
     }
 });
 
-document.querySelector(".save-btn").addEventListener("click", function(){
-    alert("Profile Updated ✅");
-});
-
+// document.querySelectorAll(".save-btn").forEach(btn => {
+//   btn.addEventListener("click", () => {
+//     // alert("Submitted");
+//   });
+// });

@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import student,teacher
+from .models import FocusData, WellnessCheckin, Assignment, WellnessReport, settings
 
-# Register your models here.
-
-admin.site.register(student)
-admin.site.register(teacher)
+admin.site.register(FocusData)
+admin.site.register(WellnessCheckin)
+admin.site.register(Assignment)
+admin.site.register(WellnessReport)
+admin.site.register(settings)
 
 

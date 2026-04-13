@@ -66,12 +66,12 @@ function renderComboChart() {
       {
         name: 'Sleep Hours',
         type: 'column',
-        data: [7.5, 6, 7, 8, 6.5, 5.5, 7.5]
+        data: sleepData
       },
       {
         name: 'Mood Score',
         type: 'line',
-        data: [7, 6, 8, 5, 7, 8, 9]
+        data: moodData
       }
     ],
 
@@ -86,7 +86,9 @@ function renderComboChart() {
     colors: ['#2E2E3A', '#FFA500'],
 
     stroke: {
-      width: [0, 3]
+      width: [0, 4],
+      curve: 'smooth'
+
     },
 
     title: {
@@ -103,7 +105,7 @@ function renderComboChart() {
 
     // X AXIS
     xaxis: {
-      categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      categories: labels,
       labels: {
         style: {
           colors: theme.text
@@ -170,6 +172,7 @@ function updateComboChartTheme() {
   chart.updateOptions({
 
     xaxis: {
+      categories: labels,
       labels: {
         style: {
           colors: theme.text

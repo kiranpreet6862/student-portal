@@ -91,24 +91,24 @@
         <main class="main-container">
             <div class="main-title">
                 <p class="font-weight-bold">Wellness Report</p>
-                <button> Download PDF </button>
+                
             </div>
             <div class="main-content">
                 <div class="card-content" id="card-1">
                     <span class="heading">Recovery Score</span>
-                    <span class="score text-green">72</span>
-                    <span class="text">Based on sleep & breaks</span>
+                    <span class="score text-green">{{recovery_score}}</span>
+                    <span class="text">Based on sleep quality & mood</span>
                     
                 </div>
                 <div class="card-content" id="card-2">
                     <span class="heading">Study Balance</span>
-                    <span class="score text-blue">88</span>
-                    <span class="text">Work/Life Ratio</span>
+                    <span class="score text-blue">{{study_balance}}</span>
+                    <span class="text">Study vs Active Time</span>
                 </div>
                 <div class="card-content" id="card-3">
                     <span class="heading">Workload Impact</span>
-                    <span class="score text-orange">65</span>
-                    <span class="text">Academic Pressure level</span>
+                    <span class="score text-orange">{{workload_impact}}</span>
+                    <span class="text">Impact on Wellness</span>
                 </div>
                 <div class="card-content" id="card-4">
                 </div>
@@ -116,7 +116,22 @@
         </main>
     </div>
 
-
+    <script>
+        var sleepData = [{% for val in sleep_data %}
+                            {{ val }},
+                            {% endfor %}
+                        ];
+        var moodData = [{% for val in mood_data %}
+                            {{ val }},
+                            {% endfor %}
+                        ];
+        var labels =[ {% for day in labels %}
+                        "{{ day }}",
+                        {% endfor %}
+                    ];
+        
+        
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{% static 'javascript/wellness-report.js' %}"></script>
 

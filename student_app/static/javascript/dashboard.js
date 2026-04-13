@@ -38,6 +38,7 @@ function toggleTheme() {
 }  
 
 window.onload = () => {  
+
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "light") {  
@@ -48,7 +49,30 @@ window.onload = () => {
     document.getElementById("themeIcon").textContent = "light_mode";
   }
 
-  renderAreaChart(); 
+  // ✅ GET CHART ELEMENT
+  const chartEl = document.getElementById("area-chart");
+
+  let labels = [];
+  let wellnessData = [];
+
+  if (chartEl) {
+    labels = chartEl.dataset.labels
+      ? chartEl.dataset.labels.replace(/[\[\]\s]/g, '').split(',')
+      : [];
+
+    wellnessData = chartEl.dataset.values
+      ? chartEl.dataset.values.replace(/[\[\]\s]/g, '').split(',').map(Number)
+      : [];
+  }
+
+  console.log("Labels:", labels);
+  console.log("Data:", wellnessData);
+if (wellnessData.every(val => val === 0)) {
+  console.log("No data available");
+}
+
+  // ✅ pass data to chart
+  renderAreaChart(labels, wellnessData); 
   renderDonutChart(); 
 
   setTimeout(() => {
@@ -57,14 +81,14 @@ window.onload = () => {
 };
 
 // ...................area chart.................
-function renderAreaChart() {
+function renderAreaChart(labels, wellnessData) {
 
   const isDark = document.body.classList.contains("dark-mode");
 
   var areaChartOptions = {
     series: [{
       name: 'Wellness',
-      data: [65, 70, 68, 72, 75, 78, 78]
+      data: wellnessData
     }],
 
     chart: {
@@ -83,7 +107,7 @@ function renderAreaChart() {
     },
 
     xaxis: {
-      categories: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      categories: labels,
       labels: {
         style: {
           colors: isDark ? '#e2e8f0' : '#333'
@@ -92,6 +116,9 @@ function renderAreaChart() {
     },
 
     yaxis: {
+      min: 0,
+      max: 100,
+      tickAmount: 10,
       labels: {
         style: {
           colors: isDark ? '#e2e8f0' : '#333'
@@ -116,7 +143,7 @@ function updateChartTheme() {
 
   areaChart.updateOptions({
     xaxis: {
-      categories: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      categories: labels,
       labels: {
         style: {
           colors: isDark ? '#e2e8f0' : '#333'
@@ -124,7 +151,7 @@ function updateChartTheme() {
       }
     },
     yaxis: {
-      min: 40,
+      min: 0,
       max: 100,
       labels: {
         style: {
@@ -142,40 +169,63 @@ function updateChartTheme() {
 
 function renderDonutChart() {
 
-  var donutChartOptions = {
-    series: [72, 28],
+    var element = document.querySelector("#donut-chart");
 
-    chart: {
-      type: 'donut',
-      height: 150
-    },
+    var pressure = parseFloat(element.getAttribute("data-pressure")) || 0;
+    var remaining = 100 - pressure;
 
-    labels: ['Pressure', 'Remaining'],
+    var donutChartOptions = {
+        series: [pressure, remaining],
 
-    colors: ['#ff5c73', 'rgb(99, 102, 241)'],
+        chart: {
+            type: 'donut',
+            height: 150
+        },
 
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '60%',
-          labels: {
-            show: true,
-            total: {
-              show: true,
-              formatter: function () {
-                return '72%';
-              }
+        labels: ['Pressure', 'Remaining'],
+
+        colors: ['#ff5c73', 'rgb(99, 102, 241)'],
+
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '60%',
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            formatter: function () {
+                                return pressure + '%';
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    },
+        },
 
-    dataLabels: { enabled: false },
-    legend: { show: false },
-    stroke: { width: 0 }
-  };
+        dataLabels: { enabled: false },
+        legend: { show: false },
+        stroke: { width: 0 }
+    };
 
-  var donutChart = new ApexCharts(document.querySelector("#donut-chart"), donutChartOptions);
-  donutChart.render();
+    var donutChart = new ApexCharts(element, donutChartOptions);
+    donutChart.render();
 }
+
+// ================= GET DATA =================
+// var labels = [];
+// var wellnessData = [];
+
+// if (chartEl.dataset.labels) {
+//   labels = chartEl.dataset.labels
+//     .replace(/[\[\]\s]/g, '')   // remove [ ] and spaces
+//     .split(',');
+// }
+
+// if (chartEl.dataset.values) {
+//   wellnessData = chartEl.dataset.values
+//     .replace(/[\[\]\s]/g, '')
+//     .split(',')
+//     .map(Number);
+// }
+

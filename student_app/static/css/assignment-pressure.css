@@ -169,7 +169,7 @@ body{
     box-shadow: 0 6px 7px -4px rgba(0,0,0,0.2);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 #sidebar{
@@ -247,7 +247,7 @@ a{
     padding: 10px ;
 }
 
-.main-title{
+/* .main-title{
     color: black;
     margin: 10px;
     
@@ -257,6 +257,21 @@ a{
     font-weight: bold;
     color: var(--heading-color);
     
+} */
+ .main-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-btn {
+  background: #4f46e5;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .top-bar {
@@ -362,6 +377,26 @@ a{
     border-radius: 5px;
 
 }
+.badge-easy{
+    font-size: 10px;
+    background-color: green;
+    display: inline;
+    font-weight: 600;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+.badge-medium{
+    font-size: 10px;
+    background-color:orange;
+    display: inline;
+    font-weight: 600;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+
+}
 
 .card-content>h2{
     font-size: 15px;
@@ -416,6 +451,80 @@ a{
 .green-fill{
     background: green;
 }
+
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  border-radius: 12px;
+}
+
+.modal-header>h3{
+    text-align: center;
+    margin-top: -2px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.modal-header>h3>span{
+    cursor: pointer;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 5px;
+}
+.save-btn{
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+label{
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.pressure-level {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 5%;
+    background-color: #dbeafe; /* light blue */
+    padding: 0px 12px;
+    border-radius: 10px;
+    width: 83%;
+    margin: 12px 0px 0px 14px;
+    color: #1e3a8a; /* dark blue text */
+    font-size: 12px;
+}
+
+/* Icon */
+.pressure-level span {
+    font-size: 18px;
+}
+
+/* Bold text */
+.pressure-level strong {
+    font-weight: 600;
+}
+
 
 @media (max-width: 992px) {
   

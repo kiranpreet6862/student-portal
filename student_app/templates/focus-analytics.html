@@ -91,8 +91,10 @@
         <main class="main-container">
             <div class="main-title">
                 <p class="font-weight-bold">Focus Analytics</p>
+                <button class="distraction-btn" onclick="openModal()">😵 How distracted are you today?</button>
             </div>
-            <section class="main-content">               
+            <section class="main-content"> 
+
                 <div class="sub-content" id="timer"> 
                     <p>Focus Timer</p>
                     <div id="display">00.00.00
@@ -101,7 +103,11 @@
                         <button class="timerbtn" id="startBtn">Start</button>
                         <button class="timerbtn" id="stopBtn">Stop</button>
                         <button class="timerbtn" id="resetBtn">Reset</button>
-                    </div>       
+                    </div>    
+                    <form method="POST" action="{% url 'focus-analytics' %}" id="focusForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="duration" id="durationInput">
+                    </form>   
                 </div>
                 <div class="sub-content" id="bar-graph">                       
                 </div>                
@@ -111,19 +117,19 @@
                     <p>Insights</p>
                     <div class="insight">
                         <span class="text">🏆 Consistency Score</span>
-                        <span class="sub-text">82/100</span>
+                        <span class="sub-text">{{ consistency_score }}/100</span>
                     </div>
                     <hr>
 
                     <div class="insight">
                         <span class="text">🧠 Deep Work</span>
-                        <span class="sub-text">8.2 hrs</span>
+                        <span class="sub-text">{{ deep_work_hours }} hrs</span>
                     </div>
                     <hr>
 
                     <div class="insight">
                         <span class="text">⏰ Best Time</span>
-                        <span class="sub-text">10:00 AM - 12:00 PM</span>
+                        <span class="sub-text">{{ best_time }}</span>
                     </div>
                     <hr>
 
@@ -133,6 +139,43 @@
 
         </main>
     </div>
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>😵 Distraction Tracker</h3>
+                <span class="close-btn" onclick="closeModal()">✖</span>
+            </div>
+            <form method="POST" action="{% url 'focus-analytics' %}">
+                {% csrf_token %}
+                <label>📱 Phone Usage</label>
+                <div class="slider-box">
+                    <input type="range" name="phone" min="0" max="180" value="60" oninput="updateValue(this, 'phoneVal')">
+                    <span id="phoneVal">60 min</span>
+                </div>
+                <label>🌐 Social Media</label>
+                <div class="slider-box">
+                    <input type="range" name="social" min="0" max="180" value="90" oninput="updateValue(this, 'socialVal')">
+                    <span id="socialVal">90 min</span>
+                </div>
+                <label>🌿 Daydreaming</label>
+                    <div class="slider-box">
+                        <input type="range" name="daydreaming" min="0" max="180" value="30" oninput="updateValue(this, 'dayVal')">
+                        <span id="dayVal">30 min</span>
+                    </div>               
+                <label>🧠 Other</label>
+                <div class="slider-box">
+                    <input type="range" name="other" min="0" max="180" value="30" oninput="updateValue(this, 'otherVal')">
+                    <span id="otherVal">30 min</span>
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
+    </div>
+    <script>var weeklyData = {{ week_data|safe }};
+            var weekLabels = {{ week_labels|safe }};
+    </script>
+    <script>var pieData = {{ pie_data|safe }};</script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{% static 'javascript/focus-analytics.js' %}"></script>
 

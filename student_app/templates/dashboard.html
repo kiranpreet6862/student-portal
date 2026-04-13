@@ -100,7 +100,7 @@
                         <p   class="text-primary">Wellness Score</p>
                         <span class="material-icons-outlined" >self_improvement</span>
                     </div>
-                    <span class="text-blue font-weight-bold ">78%</span>
+                    <span class="text-blue font-weight-bold ">{{wellness_score}}%</span>
                 </div>
 
                 <div class="card">
@@ -108,7 +108,7 @@
                         <p   class="text-primary">Assignments</p>
                         <span class="material-icons-outlined">assignment</span>
                     </div>
-                    <span class="text-orange font-weight-bold">5</span>
+                    <span class="text-orange font-weight-bold">{{total_assignments}}</span>
                 </div>
 
                 <div class="card">
@@ -116,7 +116,7 @@
                         <p   class="text-primary">Study Hours</p>
                         <span class="material-icons-outlined">access_time_filled</span>
                     </div>
-                    <span class="text-green font-weight-bold">4.5h</span>
+                    <span class="text-green font-weight-bold">{{study_hours}}</span>
                 </div>
 
                 <div class="card">
@@ -124,26 +124,27 @@
                         <p   class="text-primary">Burnout Risk</p>
                         <span class="material-icons-outlined">whatshot</span>
                     </div>
-                    <span class="text-red font-weight-bold">Low</span>
+                    <span class="text-red font-weight-bold">{{burnout}}</span>
                 </div>
             
             </div>
 
             <div class="charts">
                 <div class="charts-card">
-                    <p class="chart-title">   <b> Weekly Wellness Trend</b></p>
-                    <div id="area-chart"></div>
+                    <p class="chart-title"><b> Weekly Wellness Trend</b></p>
+                    <div id="area-chart"data-labels="{{ context.labels }}"data-values="{{ context.wellness_scores }}"></div>
                 </div>
 
                 <div class="charts-card">
                     <p class="chart-title"><b>Academic Pressure</b></p>
-                    <div id="donut-chart"></div>
-                    <p  id="donut-chart-text"> Moderate Pressure</p>
-                    <button type="button" id="donut-chart-button">View De-stress Tips</button>
+                    <div id="donut-chart" data-pressure="{{ pressure_score }}"></div>
+                    <p  id="donut-chart-text"> {{pressure_label}}</p>
+                    {% comment %} <button type="button" id="donut-chart-button">View De-stress Tips</button> {% endcomment %}
                 </div>
             </div>
         </main>
     </div>
+    
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/5.3.5/apexcharts.min.js" ></script>
