@@ -186,6 +186,4 @@ College dashboard for teachers
 
 Mobile app version
 
-Real-time notifications
 
-Real-time notifications
