@@ -86,7 +86,7 @@ window.onload = function(){
 
 const fileInput = document.getElementById("fileInput");
 const image = document.getElementById("image");
-const icon = document.getElementById("icon");
+// const icon = document.getElementById("icon");
 
 fileInput.addEventListener("change", function(){
 
@@ -101,13 +101,7 @@ fileInput.addEventListener("change", function(){
         image.classList.add("show");
         image.classList.remove("hide");
 
-        icon.classList.add("hide");
-        icon.classList.remove("show");
+        // icon.classList.add("hide");
+        // icon.classList.remove("show");
     }
 });
-
-// document.querySelectorAll(".save-btn").forEach(btn => {
-//   btn.addEventListener("click", () => {
-//     // alert("Submitted");
-//   });
-// });

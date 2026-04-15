@@ -96,8 +96,8 @@
                     <div class="profile-left">
                         <input type="file" id="fileInput" name="image" hidden>
                         <div class="profile-img">
-                            {% if profile.image %}
-                            <img src="{{ profile.image.url }}" id="image">
+                            {% if profile.profile_pic %}
+                            <img src="{{ profile.profile_pic.url }}" id="image">
                             {% else %}
                             <img src="/media/profile_pics/default.png" id="image">
                             {% endif %}

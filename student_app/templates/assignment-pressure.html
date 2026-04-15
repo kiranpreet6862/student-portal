@@ -106,7 +106,7 @@
 
             <section class="cards" name="assignments">
                 {% for item in assignments %}
-                <div class="card-content">
+                <div class="card-content {% if item.due_date < today %}overdue-card{% endif %}">
                     <div class="card-top">                      
                         <span class="subject">{{ item.subject }}</span>
                         <span class="{% if item.difficulty == 1 %}badge-easy{% elif item.difficulty == 2 %}badge-medium{% else %}badge-hard{% endif %}">
@@ -124,16 +124,53 @@
                         <span>⏱ Due: {{ item.due_date }}</span>
                         <span>⏳ ~{{ item.estimated_time }} min</span>
                     </div>
+                        {% if item.due_date < today %}
+                        <div class="overdue-badge" style="background:#ef4444; color:white; font-size:8px; padding:2px 5px; border-radius:3px; margin:5px 0; display:inline-block;">
+                            ⚠️ OVERDUE
+                        </div>
+                        {% endif %}
                     <div class="pressure-row">
                         <span>Pressure Level</span>
                         <span>{{item.pressure_level}}%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class={%if item.difficulty == 1%}"progress-fill green-fill"{%elif item.difficulty == 2%}"progress-fill orange-fill"{%else%}"progress-fill red-fill"{%endif%} style="width: {{item.pressure_level}}%;"></div>
+                        <div class="progress-fill {%if item.pressure_level < 40 %}green-fill{%elif item.pressure_level < 75 %}orange-fill{%else%}red-fill{%endif%}" style="width: {{item.pressure_level|default:0}}%;"></div>
                     </div>
+                    <form method="POST" style="margin-top: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="complete_assignment_id" value="{{ item.id }}">
+                        <button type="submit" class="complete-btn" 
+                            style="background:#10b981; color:white; padding:5px 10px; border:none; border-radius:5px; cursor:pointer; font-size:10px; width:100%;">
+                            ✅ Mark as Complete
+                        </button>
+                    </form>
+                </div>
+                {% empty %}
+                <div class="card-content">
+                    <p style="text-align:center; color: var(--text-color);">No pending assignments! 🎉</p>
                 </div>
                 {% endfor %}
             </section>
+
+            <!--  COMPLETED ASSIGNMENTS HISTORY      -->
+            {% if completed_assignments %}
+            <div class="completed-section" style="margin-top: 20px;">
+                <h3 style="color: var(--heading-color); font-size: 14px;">✅ Recently Completed</h3>
+                <div class="cards" style="grid-template-columns: 1fr;">
+                    {% for item in completed_assignments %}
+                    <div class="card-content" style="border-left: 7px solid #10b981; opacity: 0.7;">
+                        <div class="card-top">
+                            <span class="subject">{{ item.subject }}</span>
+                        </div>
+                        <h2 style="font-size: 14px;">{{ item.title }}</h2>
+                        <div class="card-info">
+                            <span>Completed on: {{ item.due_date }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </main>
     </div>
 

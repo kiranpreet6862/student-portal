@@ -14,9 +14,12 @@
     
         <p id="login-heading"> Login</p>
         <p id="login-subheading"> Enter your account details</p>
-        <input type="text" name="username" placeholder="   Username">
+        {% if error %}
+        <p class="error-msg">{{ error }}</p>
+        {% endif %}
+        <input type="text" name="username" placeholder="  Username" required>
     
-        <input type="password" name="password" placeholder="  Password">
+        <input type="password" name="password" placeholder="  Password" required>
         <div id="login-btn">
         <button type="submit" id="btn1">Login</button>
         </div>
@@ -34,15 +37,6 @@
     <img src="{% static 'images/login-img.png' %}" id="login-img">
 
 </div>
-
-
-<p>{{ error }}</p>
-
-
-
-
-
-
 
 </body>
 </html>

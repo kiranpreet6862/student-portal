@@ -84,6 +84,7 @@ class Assignment(models.Model):
     pressure_level = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     weekly_capacity = models.FloatField(blank=True, null=True)
+    is_completed = models.BooleanField(default=False) 
     
     def calculate_pressure(self):  
         days_left = (self.due_date - date.today()).days  

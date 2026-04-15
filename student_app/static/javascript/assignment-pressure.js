@@ -44,9 +44,31 @@ window.onload = () => {
 };
 
 function openAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "flex";
+    var modal = document.getElementById('assignmentModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        
+        // Semi-transparent background set karo
+        if (document.body.classList.contains('dark-mode')) {
+            modal.style.background = 'rgba(0, 0, 0, 0.8)';
+        } else {
+            modal.style.background = 'rgba(0, 0, 0, 0.5)';
+        }
+    }
 }
 
 function closeAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "none";
+    var modal = document.getElementById('assignmentModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
+
+// window.onclick = function(event) {
+//     var modal = document.getElementById('assignmentModal');
+//     if (event.target === modal) {
+//         closeAssignmentModal();
+//     }
+// }
+
+

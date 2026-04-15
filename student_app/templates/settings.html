@@ -11,7 +11,7 @@
     <title>Profile</title>
 
     {% comment %} ----------Monteserrat font--------- {% endcomment %}
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     {% comment %} -------------material icons-------  {% endcomment %}
@@ -25,13 +25,17 @@
 </head>
 
 <body>
-    {% comment %} {% if messages %}
-    {% for message in messages %}
-    <script>
-      alert("{{ message }}");
-    </script>
-    {% endfor %}
-    {% endif %} {% endcomment %}
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    {% if success %}
+    <div class="alert alert-success">
+        {{ success }}
+    </div>
+    {% endif %}
     <div class="grid-container">
     
         <header class="header">
@@ -109,7 +113,7 @@
                                 {% else %}
                                 <img id="image" src="/media/profile_pics/default.png" class="show"style="width:100px; height:100px; border-radius:50%; object-fit:cover; display:block;">
                                 {% endif %}
-                                <span id="icon" style="display:none;" class="{% if profile.profile_pic %}hide{% else %}show{% endif %}">account_circle</span>
+                                {% comment %} <span id="icon" style="display:none;" class="{% if profile.profile_pic %}hide{% else %}show{% endif %}">account_circle</span> {% endcomment %}
                             </div>  
                             <button class="upload-btn" type="button" onclick="fileInput.click()"><span class="material-icons-outlined">upload</span>Change Photo</button>
                         </div>
@@ -125,7 +129,7 @@
                             <input type="text" name="mobile" value="{{ profile.mobile }}">
                             <label>Location</label>
                             <input type="text" name="location" value="{{ profile.location }}">
-                            <button name="update_profile" type="submit" class="save-btn">Save Changes</button>
+                            <button name="update_profile"value="1" type="submit"class="save-btn" id="save-btn1">Save Changes</button>
                         </div>
                     </form>
                 </div>
@@ -135,10 +139,10 @@
                     {% csrf_token %}
                     <h3>Change Password</h3>
                     <label for="n-pwd"><b>New Password: </b></label>
-                    <input type="password" name="new_password" placeholder="New Password"><br><br>
+                    <input type="password" name="new_password" placeholder="New Password" required><br><br>
                     <label for="c-pwd">Confirm Password: </label>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password">
-                    <button name="change_password" type="submit" class="save-btn">Update Password</button>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <button name="change_password"value="1" type="submit" class="save-btn" id="save-btn2">Update Password</button>
                 </form>
 
                 <!-- 🔹 Preferences -->
@@ -151,13 +155,6 @@
                         <span class="slider"></span>
                         </label>
                     </div>
-                    <div class="toggle-row">
-                        <span>🔔 Notifications</span>
-                        <label class="switch">
-                            <input type="checkbox" id="notificationToggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
                 </div>
 
                 <!-- 🔹 Logout -->
@@ -167,7 +164,7 @@
                 </div>
             </div>
         </main>       
-
+    
     <script src="{% static 'javascript/settings.js' %}"></script>
 
 </body>

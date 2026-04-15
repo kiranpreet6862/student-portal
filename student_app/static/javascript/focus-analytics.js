@@ -276,7 +276,7 @@ var options = {
   tooltip: {
     y: {
       formatter: function(val) {
-        return val + "min";
+        return val === 1 ? "No data" : val + " min";
       }
     }
   },
@@ -344,6 +344,7 @@ window.onload = () => {
 
   renderBarChart();
   renderPieChart();
+  updateModalTheme();
 
   setTimeout(() => {
     updateBarChartTheme();
@@ -351,8 +352,10 @@ window.onload = () => {
   }, 50);
 };
 
+
 function openModal() {
   document.getElementById("modal").style.display = "flex";
+  updateModalTheme();  
 }
 
 function closeModal() {
@@ -361,3 +364,20 @@ function closeModal() {
 function updateValue(slider, id) {
   document.getElementById(id).innerText = slider.value + " min";
 }
+
+  
+function updateModalTheme() {
+  const modalCard = document.querySelector(".modal-card");
+  const isDark = document.body.classList.contains("dark-mode");
+  
+  if (modalCard) {
+    if (isDark) {
+      modalCard.style.backgroundColor = "#1e293b";
+      modalCard.style.border = "1px solid #475569";
+    } else {
+      modalCard.style.backgroundColor = "white";
+      modalCard.style.border = "none";
+    }
+  }
+}
+

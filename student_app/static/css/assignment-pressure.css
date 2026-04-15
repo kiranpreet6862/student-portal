@@ -14,9 +14,6 @@
   --border-color: #475569;
 }
 
-
-
-
 body{
     margin: 0;
     padding: 0;
@@ -246,18 +243,6 @@ a{
     overflow-y: auto;
     padding: 10px ;
 }
-
-/* .main-title{
-    color: black;
-    margin: 10px;
-    
-}
-.main-title>p{
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--heading-color);
-    
-} */
  .main-title {
   display: flex;
   justify-content: space-between;
@@ -295,11 +280,7 @@ a{
     border-radius: 10px;
 }
 
-.progress-fill {
-    height: 100%;
-    background: #2563eb;
-    border-radius: 10px;
-}
+
 
 .cards{
 
@@ -310,7 +291,7 @@ a{
     
 }
 .card-content{
-    height: 150px;  
+    height: 170px;  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -363,6 +344,7 @@ a{
     display: inline;
     font-weight: 600;
     padding: 5px;
+    margin-top: 10px;
     border-radius: 5px;
     color: black;
 
@@ -375,6 +357,7 @@ a{
     color: white;
     padding: 5px;
     border-radius: 5px;
+    margin-top: 10px;
 
 }
 .badge-easy{
@@ -385,6 +368,7 @@ a{
     color: white;
     padding: 5px;
     border-radius: 5px;
+    margin-top: 10px;
 
 }
 .badge-medium{
@@ -395,6 +379,7 @@ a{
     color: white;
     padding: 5px;
     border-radius: 5px;
+    margin-top: 10px;
 
 }
 
@@ -424,10 +409,6 @@ a{
     font-weight: 500;
 }
 
-.progress-bar{
-    background-color: whitesmoke;
-    border-radius: 5px;
-}
 
 .progress-bar {
     width: 100%;
@@ -435,11 +416,14 @@ a{
     background: #e5e7eb;
     border-radius: 10px;
     margin-top: 8px;
+    overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
     border-radius: 10px;
+    display: block;
+    
 }
 
 .red-fill {
@@ -452,36 +436,6 @@ a{
     background: green;
 }
 
-.modal {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-card {
-  background: white;
-  padding: 20px;
-  width: 350px;
-  border-radius: 12px;
-}
-
-.modal-header>h3{
-    text-align: center;
-    margin-top: -2px;
-    display: flex;
-    justify-content: space-evenly;
-    
-}
-.modal-header>h3>span{
-    cursor: pointer;
-}
 form{
     display: flex;
     flex-direction: column;
@@ -506,12 +460,13 @@ label{
     align-items: center;
     gap: 10px;
     height: 5%;
-    background-color: #dbeafe; /* light blue */
+    background: var(--bg-color);
+  color: var(--heading-color);
     padding: 0px 12px;
     border-radius: 10px;
     width: 83%;
     margin: 12px 0px 0px 14px;
-    color: #1e3a8a; /* dark blue text */
+    /* color: #1e3a8a; dark blue text */
     font-size: 12px;
 }
 
@@ -524,15 +479,96 @@ label{
 .pressure-level strong {
     font-weight: 600;
 }
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: var(--card-color);
+  color: var(--heading-color);
+  padding: 20px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.modal-header h3 span {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.modal-header h3 span:hover {
+  color: #ef4444;
+}
+
+/* Dark mode styles - CSS ke end mein add karo */
+body.dark-mode .modal {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .modal-card {
+  background: #1e293b;
+  border: 1px solid #475569;
+}
+
+body.dark-mode form input,
+body.dark-mode form select {
+  background: #334155;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+.complete-btn {
+    background: #10b981;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.complete-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
 
 
-@media (max-width: 992px) {
-  
-  
-  .main-content-container {
-    width: 90%;
-    margin: 20px auto;
-  }
+body.dark-mode .complete-btn {
+    background: #059669;
+    
+}
+
+body.dark-mode .complete-btn:hover {
+    background: #047857;
 }
 
 @media (max-width:768px){

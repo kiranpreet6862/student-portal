@@ -185,9 +185,36 @@ def checkin(request):
 @login_required 
 def assignmentPressure(request):
     
-    
-    assignments = Assignment.objects.filter(user=request.user)
+    #  DELETE OVERDUE ASSIGNMENTS 
     today = date.today()
+    overdue_assignments = Assignment.objects.filter(
+        user=request.user,
+        due_date__lt=today, 
+        is_completed=False
+    )
+    overdue_assignments.delete()
+    
+    # Delete
+    if request.method == "POST" and 'complete_assignment_id' in request.POST:
+        assignment_id = request.POST.get('complete_assignment_id')
+        try:
+            assignment = Assignment.objects.get(id=assignment_id, user=request.user)
+            assignment.is_completed = True
+            assignment.save()
+            messages.success(request, f"✅ '{assignment.title}' completed!")
+        except Assignment.DoesNotExist:
+            messages.error(request, "Assignment not found!")
+        return redirect('assignment-pressure')
+    
+    # Get only INCOMPLETE assignments (excluding completed ones)
+    assignments = Assignment.objects.filter(
+        user=request.user, 
+        is_completed=False  #Only show incomplete assignments
+    ).order_by('due_date')
+    
+    
+    # assignments = Assignment.objects.filter(user=request.user)
+    # today = date.today()
     # Monday 
     start_week = today - timedelta(days=today.weekday())
     # Sunday
@@ -203,7 +230,12 @@ def assignmentPressure(request):
     capacity = (total_minutes / MAX_WEEKLY_MINUTES) * 100
     capacity = min(round(capacity, 1), 100)
     
-    # ADD ASSIGNMENT
+    completed_assignments = Assignment.objects.filter(
+        user=request.user,
+        is_completed=True
+    ).order_by('-due_date')[:5]  
+    
+    # ADD ASSIGNMENT# ---------------- POST ---------------- #
     if request.method == "POST":
 
         subject = request.POST.get('subject')
@@ -220,22 +252,26 @@ def assignmentPressure(request):
             title=title,
             due_date=due_date,
             estimated_time=time,
-            difficulty=difficulty         
-        )               
-        return render(request, "assignment-pressure.html", {
-            "assignments": assignments,
-            "pressure": obj.pressure_level,
-            "show_modal": True,
-            "subject":subject,
-            "difficulty":difficulty,
-            "title":title,
-            "due_date":due_date,
-            "estimated_time":time,
-            "capacity": capacity                    
-        })
+            difficulty=difficulty,
+            is_completed=False         
+        )      
+        messages.success(request, f"✅ '{title}' added successfully!")
+        return redirect('assignment-pressure')
+                 
+        # return render(request, "assignment-pressure.html",{
+        #     "assignments": assignments,
+        #     "pressure": obj.pressure_level,
+        #     "show_modal": True,
+        #     "subject":subject,
+        #     "difficulty":difficulty,
+        #     "title":title,
+        #     "due_date":due_date,
+        #     "estimated_time":time,
+        #     "capacity": capacity                    
+        # })
         
 
-    return render(request, "assignment-pressure.html",{"assignments": assignments,"capacity": capacity  })
+    return render(request, "assignment-pressure.html",{"assignments": assignments,"capacity": capacity,"today": today,"completed_assignments": completed_assignments,  })
 
 @login_required    
 def focusAnalytics(request):
@@ -362,8 +398,11 @@ def focusAnalytics(request):
             today_obj.daydreaming,
             today_obj.other
         ]
+        if sum(pie_data) == 0:
+            pie_data = [1, 1, 1, 1]
+
     else:
-        pie_data = [0, 0, 0, 0]
+        pie_data = [1, 1, 1, 1]
     
     # ---------------- INSIGHTS CALCULATION ---------------- #
     today = date.today() 
@@ -424,7 +463,7 @@ def focusAnalytics(request):
 
     # ---------------- SEND TO TEMPLATE ---------------- #
 
-    return render(request, "focus-Analytics.html", {
+    return render(request, "focus-analytics.html", {
         "focus_time": round(focus_time / 60, 2),   # show in hours
         "study_time": round(study_time / 60, 2),
         "distraction": distraction,
@@ -634,42 +673,71 @@ def settings_view(request):
         if "update_profile" in request.POST:
             user = request.user
 
-            user.username = request.POST.get("username")
-            user.email = request.POST.get("email")
+            username = request.POST.get("username")
+            email = request.POST.get("email")
+            age = request.POST.get("age")
+            mobile = request.POST.get("mobile")
+            location = request.POST.get("location")
+
+            # #  Empty validation
+            # if not username or not email or not age or not mobile or not location:
+            #     return render(request, "settings.html", {
+            #         "profile": profile,
+            #         "error": "All fields are required ⚠️"
+            #     })
+
+            #  Save data
+            user.username = username
+            user.email = email
             user.save()
 
-            profile.age = request.POST.get("age")
-            profile.mobile = request.POST.get("mobile")
-            profile.location = request.POST.get("location")
+            profile.age = age
+            profile.mobile = mobile
+            profile.location = location
 
             if request.FILES.get("profile_pic"):
                 profile.profile_pic = request.FILES.get("profile_pic")
-            print("FILES:", request.FILES)
-            print("POST:", request.POST)
+
             profile.save()
-            messages.success(request, "Profile Updated Successfully ✅")
+
+            return render(request, "settings.html", {
+                "profile": profile,
+                "success": "Profile Updated Successfully ✅"
+            })
 
         # 🔹 PASSWORD CHANGE
-        elif "change_password" in request.POST:
-            new = request.POST.get("new_password")
-            confirm = request.POST.get("confirm_password")
+        elif request.POST.get("change_password") == "1":
+            new = request.POST.get("new_password", "").strip()
+            confirm = request.POST.get("confirm_password", "").strip()
+            
+            if new == "" and confirm == "":
+                return render(request, "settings.html", {
+                "profile": profile
+            })
+            if not new or not confirm:
+                return render(request, "settings.html", {
+                    "profile": profile,
+                    "error": "Please fill both password fields ⚠️"
+                })
 
-            if new == confirm and new:
+            elif new != confirm:
+                return render(request, "settings.html", {
+                    "profile": profile,
+                    "error": "Passwords do not match ❌"
+                })
+
+            else:
                 user = request.user
                 user.set_password(new)
                 user.save()
                 update_session_auth_hash(request, user)
-                messages.success(request, "Password Updated Successfully 🔐")
-            else:
-                messages.error(request, "Passwords do not match ❌")
-                print("NEW PASSWORD:", new)
 
-        return redirect("settings")
+                return render(request, "settings.html", {
+                    "profile": profile,
+                    "success": "Password Updated Successfully 🔐"
+                })
 
     return render(request, "settings.html", {"profile": profile})
-
-
-
 
 
 

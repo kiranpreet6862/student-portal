@@ -434,6 +434,48 @@ hr{
   border: none;
   border-radius: 8px;
 }
+/* 🔥 DARK MODE FOR MODAL - YEH ADD KAREIN 🔥 */
+body.dark-mode .modal {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .modal-card {
+  background: #1e293b;
+  border: 1px solid #475569;
+}
+
+body.dark-mode .modal-header h3 {
+  color: #e2e8f0;
+}
+
+body.dark-mode .close-btn {
+  color: #94a3b8;
+}
+
+body.dark-mode .close-btn:hover {
+  color: #e2e8f0;
+}
+
+body.dark-mode .modal-card label {
+  color: #cbd5e1;
+}
+
+body.dark-mode .slider-box span {
+  color: #e2e8f0;
+}
+
+body.dark-mode input[type="range"] {
+  background: #334155;
+  accent-color: #6C63FF;
+}
+
+body.dark-mode .save-btn {
+  background: #6C63FF;
+}
+
+body.dark-mode .save-btn:hover {
+  background: #5a52e0;
+}
 
 @media (max-width:768px){
     
