@@ -23,11 +23,9 @@ def register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        age = request.POST.get('age')
-        mobile_number = request.POST.get('mobile_number')
-        location = request.POST.get('location')
+       
 
-        if not username or not email or not password or not age or not mobile_number or not location:
+        if not username or not email or not password :
             return render(request, 'register.html', {'error': 'All fields are required'})
 
         if User.objects.filter(username=username).exists():
@@ -128,7 +126,7 @@ def dashboard(request):
         obj = WellnessCheckin.objects.filter(
             user=request.user,
             created_at__date=day
-        ).order_by('-created_at').first()   # ✅ latest entry
+        ).order_by('-created_at').first()   #  latest entry
 
         if obj and obj.wellness_score is not None:
             
@@ -437,7 +435,7 @@ def focusAnalytics(request):
 
     for obj in focus_data:
         if obj.created_at:
-            hour = obj.created_at.hour   # e.g. 10, 14
+            hour = obj.created_at.hour   # e.g. 10, 14                                                                                                                                              
             hour_list.append(hour)
 
     if hour_list:
@@ -464,7 +462,7 @@ def focusAnalytics(request):
     # ---------------- SEND TO TEMPLATE ---------------- #
 
     return render(request, "focus-analytics.html", {
-        "focus_time": round(focus_time / 60, 2),   # show in hours
+        "focus_time": round(focus_time / 60, 2),   #  hours
         "study_time": round(study_time / 60, 2),
         "distraction": distraction,
         "total_active": round(total_active / 60, 2),
@@ -495,7 +493,7 @@ def wellnessReport(request):
 
     if obj:
         sleep = obj.sleep_hours or 0
-        mood = obj.mood or 0   # correct field
+        mood = obj.mood or 0  
 
         # Sleep Score
         if sleep < 3:
@@ -503,7 +501,7 @@ def wellnessReport(request):
         elif sleep < 6:
             sleep_score = 60
         else:
-            sleep_score = 90   # thoda improve kiya
+            sleep_score = 90  
 
         # Mood Score
         if mood == 1:
@@ -669,7 +667,7 @@ def settings_view(request):
 
     if request.method == "POST":
 
-        # 🔹 PROFILE UPDATE
+        #  PROFILE UPDATE
         if "update_profile" in request.POST:
             user = request.user
 
@@ -678,13 +676,6 @@ def settings_view(request):
             age = request.POST.get("age")
             mobile = request.POST.get("mobile")
             location = request.POST.get("location")
-
-            # #  Empty validation
-            # if not username or not email or not age or not mobile or not location:
-            #     return render(request, "settings.html", {
-            #         "profile": profile,
-            #         "error": "All fields are required ⚠️"
-            #     })
 
             #  Save data
             user.username = username
@@ -705,7 +696,7 @@ def settings_view(request):
                 "success": "Profile Updated Successfully ✅"
             })
 
-        # 🔹 PASSWORD CHANGE
+        #  PASSWORD CHANGE
         elif request.POST.get("change_password") == "1":
             new = request.POST.get("new_password", "").strip()
             confirm = request.POST.get("confirm_password", "").strip()

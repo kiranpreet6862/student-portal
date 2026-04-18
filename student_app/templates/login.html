@@ -5,38 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 </head>
 <body>
-<div id="left">    
-    <form id="form" method="POST">
-    {% csrf_token %}
-
+    <div id="left">    
+        <form id="form" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}  
+            <p id="login-heading"> Login</p>
+            <p id="login-subheading"> Enter your account details</p>
+            {% if error %}
+            <p class="error-msg">{{ error }}</p>
+            {% endif %}
+            <div class="input-field">
+                <input type="text" name="username" placeholder="  Username" required>
+            </div>
     
-        <p id="login-heading"> Login</p>
-        <p id="login-subheading"> Enter your account details</p>
-        {% if error %}
-        <p class="error-msg">{{ error }}</p>
-        {% endif %}
-        <input type="text" name="username" placeholder="  Username" required>
-    
-        <input type="password" name="password" placeholder="  Password" required>
-        <div id="login-btn">
-        <button type="submit" id="btn1">Login</button>
-        </div>
-        <div id="register-btn">
-            <p> Don't have an account?</p>
-            <button type="button" id="btn2" onclick="window.location.href='{% url 'register' %}'">Register</button>
-        </div>
-    </form> 
-</div>
-<div id="img-container">
-    <div id="img-text">
-        <p id="img-title">Welcome to </p>
-        <p id="img-heading">Student portal</p>   
+            <div class="password-field">
+                <input type="password" name="password" id="login_password" placeholder="  Password" required>
+                <span class="toggle-eye" onclick="togglePassword('login_password', this)"><i class="fa-solid fa-eye-slash"></i></span>
+            </div>
+            <div id="login-btn">
+                <button type="submit" id="btn1">Login</button>
+                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+            </div>
+            <div id="register-btn">
+                <p> Don't have an account?</p>
+                <button type="button" id="btn2" onclick="window.location.href='{% url 'register' %}'">Register</button>
+            </div>
+       </form> 
     </div>
-    <img src="{% static 'images/login-img.png' %}" id="login-img">
+    <div id="img-container">
+        <div id="img-text">
+            <p id="img-title">Welcome to </p>
+            <p id="img-heading">Student portal</p>   
+        </div>
+        <img src="{% static 'images/login-img.png' %}" id="login-img">
+    </div>
+    <script>
+        function togglePassword(fieldId, icon) {
+        const input = document.getElementById(fieldId);
+        const i = icon.querySelector("i");
 
-</div>
+            if (input.type === "password") {
+                input.type = "text";
+                i.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                input.type = "password";
+                i.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        }
+    </script>
 
 </body>
 </html>

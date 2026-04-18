@@ -415,6 +415,7 @@ a {
     font-size: 15px;
     text-align: center;
     margin: auto;
+    color: var(--heading-color);
 }
 
 @media screen and (max-width:992px){
