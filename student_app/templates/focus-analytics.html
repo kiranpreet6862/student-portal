@@ -8,8 +8,8 @@
     
     {% comment %} -- Title -- {% endcomment %}
 
-    <title>My Website</title>
-
+    <title>Focus A nalytics</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     {% comment %} ----------Monteserrat font--------- {% endcomment %}
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -94,7 +94,10 @@
                 <button class="distraction-btn" onclick="openModal()">😵 How distracted are you today?</button>
             </div>
             <section class="main-content"> 
-
+                <div class="sub-content" id="bar-graph">                       
+                </div>                
+                <div class="sub-content" id="pie-chart">
+                </div>
                 <div class="sub-content" id="timer"> 
                     <p>Focus Timer</p>
                     <div id="display">00.00.00
@@ -108,10 +111,6 @@
                         {% csrf_token %}
                         <input type="hidden" name="duration" id="durationInput">
                     </form>   
-                </div>
-                <div class="sub-content" id="bar-graph">                       
-                </div>                
-                <div class="sub-content" id="pie-chart">
                 </div>
                 <div class="sub-content" id="insights">
                     <p>Insights</p>
@@ -132,8 +131,6 @@
                         <span class="sub-text">{{ best_time }}</span>
                     </div>
                     <hr>
-
-
                 </div>                  
             </section>
 

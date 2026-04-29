@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     {% comment %} -- Title -- {% endcomment %}
-
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <title>Student Mental Health & Academic Pressure Analytics Platform</title>
 
     {% comment %} ----------Monteserrat font--------- {% endcomment %}
@@ -25,20 +25,23 @@
 </head>
 
 <body>
-
-    <div class="grid-container">
-    
+    <div class="grid-container">   
         <header class="header">
             <div class="menu-icon" onclick="openSidebar()">
                 <span class="material-icons-outlined">menu</span>
             </div> 
-
             <div id="header-right">
                 <div class="notification-container">
                     <span class="material-icons-outlined" onclick="toggleNotification()">notifications</span>
                     <div id="notificationBox" class="notification-box">
                         <h4>Notifications</h4>
-                        <p>No new notifications</p>
+                        {% if notifications %}
+                            {% for n in notifications %}
+                                <p>{{ n.message }}</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>No new notifications</p>
+                        {% endif %}
                     </div>
                 </div>
                 <span id="themeIcon" class="material-icons-outlined" onclick="toggleTheme()">dark_mode</span>
@@ -51,8 +54,7 @@
                         <p><a href="{% url 'login' %}">Logout</a></p>
                     </div>
                 </div>
-            </div>
-        
+            </div>       
         </header>
 
         <aside id="sidebar">

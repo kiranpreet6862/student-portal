@@ -27,7 +27,7 @@ body{
 .material-icons-outlined{
     vertical-align:middle;
     line-height: 1px;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
     color: var(--heading-color);
 }
@@ -41,6 +41,7 @@ body{
     padding: 2px;
     border-radius: 4px;
     cursor: pointer;
+    
 }
 .menu-icon:hover{
     background-color: var(--text-color);
@@ -72,8 +73,8 @@ body{
 
 .grid-container{
     display:grid;
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: 35px 1fr;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr;
     grid-template-areas: 
         "sidebar header "
         "sidebar main";
@@ -96,7 +97,8 @@ body{
 
 a {
     text-decoration: none;   
-    color: inherit;         
+    color: inherit;  
+           
 }
 
 .sidebar-title{
@@ -104,7 +106,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 5px 5px 5px 5px;
-    margin-bottom: 5px;   
+    margin-bottom: 30px;   
 }
 
 .sidebar-title > span{
@@ -112,7 +114,7 @@ a {
 }
 
 .sidebar-list{
-    margin-top: 20px;
+    margin-top: 30px;
     padding:0;
     list-style-type: none;
    
@@ -120,7 +122,7 @@ a {
 
 .sidebar-list-item{
     padding: 10px 10px 10px 10px;
-    font-size: 8px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--text-color);
     transition-duration: 0.5s;
@@ -135,6 +137,7 @@ a {
     cursor: pointer;
     color: rgb(99, 102, 241) ;
     transform: translateX(5px);
+    font-weight: bold;
 }
 
 .sidebar-hidden{
@@ -144,7 +147,7 @@ a {
 
 .sidebar-brand{
     margin-top: 15px;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 900;
     color: rgb(99, 102, 241);
 }
@@ -157,7 +160,7 @@ a {
 
 .header{
     grid-area: header;
-    height: 35px;
+    height: 60px;
     background-color: var(--card-color);
     display: flex;
     justify-content: space-between;
@@ -175,8 +178,8 @@ a {
 
 .notification-box {
   position: absolute;
-  top: 35px;
-  width:120px;
+  top: 20px;
+  width:150px;
   right: 0;
   background: var(--card-color);
   border-radius: 10px;
@@ -190,7 +193,7 @@ a {
 
 .notification-box>h4{
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 18px;
     margin-left: 5px;
     cursor: pointer;
     text-align: center;
@@ -201,7 +204,7 @@ a {
 }
 .notification-box>p{
     margin-bottom: 5px;
-    font-size: 10px;
+    font-size: 12px;
     margin-left: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -224,7 +227,7 @@ a {
   top: 30px;     
   right: 0;       
 
-  width: 120px;
+  width: 150px;
   background: var(--card-color);
   border-radius: 10px;
 
@@ -246,7 +249,7 @@ a {
 .profile-dropdown p {
   margin: 0;
   padding: 10px 15px;
-  font-size: 10px;
+  font-size: 14px;
   cursor: pointer;
   color: var(--heading-color);
 }
@@ -255,11 +258,10 @@ a {
   background: var(--bg-color);
 }
 
-.main-container{
-    
+.main-container{  
     grid-area: main;
     overflow-y: auto;
-    padding: 10px ;
+    padding: 20px ;
 }
 
 .main-title{
@@ -269,7 +271,7 @@ a {
 }
 
 .main-title>p{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--heading-color);
     
@@ -278,13 +280,11 @@ a {
 .main-cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap:8px;
-    /* margin: 20px 0; */
-
+    gap:10px;
 }
 
 .card{
-    height: 80px;  
+    height: 150px;  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -292,7 +292,7 @@ a {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
     transition-property: all;
@@ -300,21 +300,21 @@ a {
 }
 
 .card:hover{
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
 .card:first-child{
-    border-left: 7px solid #246dec;
+    border-left: 10px solid #246dec;
 }
 
 .card:nth-child(2){
-    border-left:7px solid #f5b74f;
+    border-left:10px solid #f5b74f;
 }
 .card:nth-child(3){
-    border-left:7px solid #367952;
+    border-left:10px solid #367952;
 }
 .card:nth-child(4){
-    border-left:7px solid #cc3c43;
+    border-left:10px solid #cc3c43;
 }
 
 .card>span{
@@ -322,11 +322,12 @@ a {
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
+    font-size: 24px;
     
 }
 
 .card-inner>p{
-    font-size:10px;
+    font-size:18px;
     font-weight: bold;
     margin-top: 5px;
     color: var(--heading-color);
@@ -334,7 +335,8 @@ a {
 
 
 .card-inner>span{
-    font-size: 22px;
+    font-size: 35px;
+    margin-right: 15px;
     display: flex;
     justify-content: flex-end;
     color: var(--heading-color);
@@ -343,8 +345,9 @@ a {
 
 .charts{
     display: grid;
-    grid-template-columns: 2fr 200px;
+    grid-template-columns: 2fr 400px;
     gap:10px;
+    margin-top: 15px;
 
 }
 
@@ -352,10 +355,10 @@ a {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 15px;
     box-sizing: border-box;
     -webkit-column-break-inside:avoid;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
     transition-property: all;
@@ -364,140 +367,141 @@ a {
 
 
 .charts-card:hover{
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
 .chart-title{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 15px ;
+    font-size: 25px ;
     color: var(--heading-color);
-    margin: 20px;
-    
-    
+    margin: 25px;    
 }
-
-#donut-chart-button{
-    height: 7%;
-    width: 72%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin: 20px ; */
-    margin-top: 20px;
-    margin-left: 26px;
-   font-size: 12px;
-   text-align: center;
-   border-radius: 12px;
-   border: 1px solid #246dec;
-   background-color: var(--card-color);
-   color: var(--heading-color);
-   cursor: pointer;
-   
-}
-#donut-chart-button:hover{
-    background-color: var(--bg-color);
-    color: var(--heading-color);
-}
-
-#area-chart {
-  /* max-width: 650px; */
-  margin: 10px auto;
-}
-
-#donut-chart {
-  /* max-width: 650px; */
-  margin: 10px auto;
-}
-
 #donut-chart-text{
-    font-size: 15px;
+    font-size: 25px;
     text-align: center;
-    margin: auto;
+    margin-top: 20px;
     color: var(--heading-color);
 }
 
-@media screen and (max-width:992px){
+
+
+
+
+@media (min-width: 320px){ 
     .grid-container{
-        grid-template-columns: 150px 3fr;
-        grid-template-rows: 5px 3fr;
+        grid-template-columns: 180px 1fr;
+        grid-template-rows: 40px 1fr;
         grid-template-areas: 
-        " sidebar header"
-        " sidebar main";
+        "sidebar header"
+        "sidebar main";
     }
-    .main-cards{
-        grid-template-columns: 1fr 1fr 1fr 1fr ;
-        /* grid-template-rows: 1fr 1fr; */
-
+    .material-icons-outlined{
+        font-size: 20px;
     }
-    .main-title{
-        margin-top: 20px;
+    .sidebar-list{
+        margin-top: 10px;
     }
-
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 12px;  
+    }
+    .sidebar-brand{
+        font-size: 18px;
+    }
+    .sidebar-brand span{
+        font-size: 22px;
+        margin-left: 12px;
+    }
     .charts{
-        grid-template-columns: 3fr 200px;
-        /* grid-template-rows: 1fr; */
-        margin: 2px;
+        grid-template-columns: 1fr;
+        gap:10px;
+        margin-top: 15px;
     }
-    #donut-chart-button{
-        margin-top: 20px;
-    }
-} 
-
-@media screen and (max-width:768px){
-   
-    #sidebar{
-        width: 0;
-        overflow: hidden;
-    }
-    .grid-container{
-        grid-template-columns: 0px 1fr;
-    }
-    
     .main-cards{
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 10px;
+        gap:10px;
+    }
+
+}
+
+@media (min-width: 576px){
+    .grid-container{
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 45px 1fr;
+    }
+    .material-icons-outlined{
+        font-size: 22px;
+    }  
+    .sidebar-list{
+        margin-top: 10px;
+    }
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 13px;  
+    }
+    .sidebar-brand{
+        font-size: 20px;
+    }
+    .sidebar-brand span{
+        font-size: 24px;
+        margin-left: 12px;
+    }
+    .chart-title{
+        font-size: 20px;
         margin-bottom: 0;
     }
 
+}
+@media (min-width: 992px){ 
+    .main-cards{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
     .charts{
-        grid-template-columns: 1fr;
-        margin-top: 30px;
-        
-        
-    }   
-    #donut-chart-button{
-        margin:15px 80px;
-        
+        grid-template-columns: 2fr 350px;
+        gap:10px;
+        margin-top: 15px;
+    }
+    .chart-title{
+        font-size: 22px;
+        margin-bottom: 10px;
     }
 }
-
-@media screen and (max-width:480px){
-    #sidebar{
-        width: 0;
-        overflow: hidden;
-    }
+@media (min-width: 1200px){
     .grid-container{
-        grid-template-columns: 0px 1fr;
+        grid-template-columns: 280px 1fr;
+        grid-template-rows: 45px 1fr;
     }
-
-    .charts{
-        grid-template-columns: 1fr;
-        grid-template-rows: 2fr;
-        margin: 8px;
+    .material-icons-outlined{
+        font-size: 24px;
+    }  
+    .sidebar-list{
+        margin-top: 30px;
     }
     .sidebar-list-item{
-        font-size: 7px;
-        font-weight: bold;
+        padding: 8px 8px 8px 8px;
+        font-size: 18px;    
+    }   
+    .sidebar-brand{
+        font-size: 
+        25px;
     }
-    .charts-card{
-        padding-bottom: 25px;
-        
+    .sidebar-brand span{
+        font-size: 30px;
+        margin-left: 12px;
     }
-    #donut-chart-button{
-        margin:auto
+    .main-cards{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    
+    .charts{
+        grid-template-columns: 2fr 380px;
+        gap:10px;
+        margin-top: 15px;
+        margin: 14px;
+    }
+    .chart-title{
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
 }

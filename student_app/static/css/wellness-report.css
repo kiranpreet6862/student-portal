@@ -351,21 +351,108 @@ a{
 
 }
 
-@media (max-width:768px){
-    .main-content{
-        grid-template-columns: 1fr ;
-        grid-template-areas: 
-        "card1"
-        "card2"
-        "card3"
-        "card4";
-    }
-    .sidebar-hidden{
-        width: 0;
-        overflow: hidden;
-    }
 
-    .grid-container{
-        grid-template-columns: 0px 1fr;
-    }
+@media (min-width:320px){
+  .grid-container{
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: 40px 1fr;
+    grid-template-areas: 
+    "sidebar header"
+    "sidebar main";
+  }
+  .material-icons-outlined{
+    font-size: 20px;
+  }
+  .sidebar-list{
+    margin-top: 10px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 12px;  
+  }
+  .sidebar-brand{
+    font-size: 18px;
+  }
+  .sidebar-brand span{
+    font-size: 22px;
+    margin-left: 12px;
+  }
+  .main-content{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
+    gap: 10px;
+    grid-template-areas: 
+    "card1"
+    "card2"
+    "card3"
+    "card4" ;
+
+  }
+
+}
+@media (min-width:768px){
+  .grid-container{
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 45px 1fr;
+  }
+  .material-icons-outlined{
+    font-size: 22px;
+  }  
+  .sidebar-list{
+    margin-top: 10px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 13px;  
+  }
+  .sidebar-brand{
+    font-size: 20px;
+  }
+  .sidebar-brand span{
+    font-size: 24px;
+    margin-left: 12px;
+  }
+  .main-content{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 10px;
+    grid-template-areas: 
+    "card1 card2 card3"
+    "card4 card4 card4" ;
+
+  }
+  .text{
+    font-size: 12px;
+  }
+}
+@media (min-width:1200px){
+  .grid-container{
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 50px 1fr;
+  }
+  .header{
+    height: 50px;
+  }
+  .material-icons-outlined{
+    font-size: 24px;
+  }  
+  .sidebar-list{
+    margin-top: 30px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 18px;    
+  }   
+  .sidebar-brand{
+    font-size: 
+    25px;
+  }
+  .sidebar-brand span{
+    font-size: 30px;
+    margin-left: 12px;
+  }
+  .text{
+    font-size: 14px;
+  }
+
 }

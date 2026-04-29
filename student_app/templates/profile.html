@@ -11,7 +11,7 @@
     <title>Profile</title>
 
     {% comment %} ----------Monteserrat font--------- {% endcomment %}
-
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     {% comment %} -------------material icons-------  {% endcomment %}
@@ -86,33 +86,33 @@
             </ul>
 
         </aside>
+        <section class="main-section">
+            <main class="profile-main">
 
-        <main class="profile-main">
-
-            <div class="profile-card">
-                <h2>Profile Details</h2>
-                <form class="profile-content" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="profile-left">
-                        <input type="file" id="fileInput" name="image" hidden>
-                        <div class="profile-img">
-                            {% if profile.profile_pic %}
-                            <img src="{{ profile.profile_pic.url }}" id="image">
-                            {% else %}
-                            <img src="/media/profile_pics/default.png" id="image">
-                            {% endif %}
-                        </div>  
-                    </div>                  
-                </form>
-                <div class="profile-right">
-                    <p><span>Username:</span> {{ request.user.username }}</p>
-                    <p><span>Email:</span> {{ request.user.email }}</p>
-                    <p><span>Age:</span> {{ profile.age|default:"Not added" }}</p>
-                    <p><span>Mobile Number:</span> {{ profile.mobile|default:"Not added" }}</p>
-                    <p><span>Location:</span> {{ profile.location|default:"Not added" }}</p>
+                <div class="profile-card">
+                    <h2>Profile Details</h2>
+                    <form class="profile-content" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="profile-left">
+                            <div class="profile-img">
+                                {% if profile.profile_pic %}
+                                <img src="{{ profile.profile_pic.url }}" id="image">
+                                {% else %}
+                                <img src="/media/profile_pics/default.png" id="image">
+                                {% endif %}
+                            </div>  
+                        </div>                  
+                    </form>
+                    <div class="profile-right">
+                        <p><span>Username:</span> {{ request.user.username }}</p>
+                        <p><span>Email:</span> {{ request.user.email }}</p>
+                        <p><span>Age:</span> {{ profile.age|default:"Not added" }}</p>
+                        <p><span>Mobile Number:</span> {{ profile.mobile|default:"Not added" }}</p>
+                        <p><span>Location:</span> {{ profile.location|default:"Not added" }}</p>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </section>
     </div>    
             
           

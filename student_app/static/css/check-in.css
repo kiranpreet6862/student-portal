@@ -13,7 +13,6 @@
   --heading-color: #ffffff;
   --border-color: #475569;
 }
-
 body{
     margin: 0;
     padding: 0;
@@ -21,9 +20,7 @@ body{
     background: var(--bg-color);
     color: var(--text-color);
     font-family: "Montserrat",sans-serif;
-
 }
-
 .material-icons-outlined{
     vertical-align:middle;
     line-height: 1px;
@@ -39,7 +36,6 @@ body{
 }
 .menu-icon{   
     color: rgb(99, 102, 241) ;
-    /* background-color: whitesmoke; */
     padding: 2px;
     border-radius: 4px;
     cursor: pointer;
@@ -85,7 +81,6 @@ body{
     color: var(--heading-color);
     overflow-y: auto;
     transition: all 0.5s ease-in-out;
-    /* -webkit-transition: all 0.5s; */
 }
 a{
     text-decoration: none;   
@@ -209,7 +204,6 @@ a{
     overflow-y: auto;
     padding: 10px ;
 }
-
 .main-title{
     color: var(--heading-color);
     margin: 10px;
@@ -218,40 +212,36 @@ a{
 .main-title>p{
     color: var(--heading-color);
 }
-
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .main-content-container{
     height: 500px;
-    /* width: 350px; */
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     text-align: center;
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     box-shadow: 0 6px 7px -4px rgba(0,0,0,0.2);
-    margin: 0px 25%;
+    /* margin-top: 30px; */
     border-radius: 15px;
 }
-
 .main-content-container>p{
     font-size: 12px;
     color: var(--heading-color);
 }
-
 .mood-container {
     width: 300px;
     text-align: center;
 }
-
 #emoji {
     font-size: 25px;
     margin-bottom: 10px;
 }
-
-/* Slider */
 #moodSlider {
     width: 78%;
     appearance: none;
@@ -262,8 +252,6 @@ a{
     margin: 0px 10%;
     cursor: pointer;
 }
-
-/* Thumb (blue dot) */
 #moodSlider::-webkit-slider-thumb {
     appearance: none;
     width: 15px;
@@ -272,8 +260,6 @@ a{
     border-radius: 50%;
     cursor: pointer;
 }
-
-/* Labels */
 .labels {
     display: flex;
     justify-content: space-around;
@@ -283,16 +269,13 @@ a{
     font-weight: 500;
     color: black;
 }
-
 .labels>span{
     color: var(--heading-color);
 }
-
 .main-content-container>input{
     width: 80%;
     border-radius: 10px;
 }
-
 .label {
     display: block;
     margin: 15px 0 6px;
@@ -302,12 +285,9 @@ a{
     margin: 25px 0px 10px 20px;
     color: var(--heading-color);
 }
-
 ::placeholder{
     color: black;
 }
-
-/* Input box */
 .input-group {
     display: flex;
     align-items: center;
@@ -319,16 +299,12 @@ a{
     margin: 0px 16px;
     height: 7%;
 }
-
-/* Icon */
 .input-group span {
     padding: 10px;
     background: #f1f1f1;
     border-right: 1px solid #ddd;
     color: black;
 }
-
-/* Input */
 .input-group input {
     border: none;
     outline: none;
@@ -336,8 +312,7 @@ a{
     flex: 1;
     background: transparent;
 }
-
-.dropdown {
+.dropdown ,select {
     width: 100%;
     height: 40px;
     padding: 2px 12px;
@@ -349,50 +324,41 @@ a{
     outline: none;
     cursor: pointer;
     font-weight: normal;
+    box-sizing: border-box;
 }
-
-/* Focus effect */
 .dropdown:focus {
     border-color: #7A5CD6;
     box-shadow: 0 0 0 2px rgba(122, 92, 214, 0.2);
 }
-
 #workload{
     height: 8%;
     width: 90%;
     margin: 0px 14px;
-}
+    box-sizing: border-box;
 
+}
 .wellness-box {
     display: flex;
     align-items: center;
     gap: 10px;
     height: 8%;
-    background-color: #dbeafe; /* light blue */
+    background-color: #dbeafe; 
     padding: 0px 12px;
     border-radius: 10px;
     width: 83%;
     margin: 12px 0px 0px 14px;
-    color: #1e3a8a; /* dark blue text */
+    color: #1e3a8a; 
     font-size: 12px;
 }
-
-/* Icon */
 .wellness-box span {
     font-size: 18px;
     margin: 2%;
 }
-
-/* Bold text */
 .wellness-box strong {
     font-weight: 600;
 }
 
 #suggestions{
-    /* height: 8%; */
-    /* background-color: #1e3a8a; */
-    /* margin-top: 2%; */
-    /* margin-bottom: 2%; */
     margin: 0;
     padding: auto;
     margin-left: 5%;
@@ -400,8 +366,6 @@ a{
     color: black;
     text-align: left ;
 }
-
-
 button{
     height: 6%;
     width: 90%;
@@ -416,55 +380,213 @@ button{
 
 /* ================= RESPONSIVE DESIGN ================= */
 
-/* Tablet (992px se niche) */
-@media (max-width: 992px) {
-  
-  
-  .main-content-container {
-    width: 90%;
-    margin: 20px auto;
-  }
-}
-
-/* Mobile (768px se niche) */
-@media (max-width: 768px) {
-    .sidebar-hidden{
-    width: 0;
-    overflow: hidden;
-    }
+@media (min-width: 320px){ 
     .grid-container{
-        grid-template-columns: 0px 1fr;
+        grid-template-columns: 180px 1fr;
+        grid-template-rows: 40px 1fr;
+        grid-template-areas: 
+        "sidebar header"
+        "sidebar main";
     }
+    .material-icons-outlined{
+        font-size: 20px;
+    }
+    .sidebar-list{
+        margin-top: 10px;
+    }
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 12px;  
+    }
+    .sidebar-brand{
+        font-size: 18px;
+    }
+    .sidebar-brand span{
+        font-size: 22px;
+        margin-left: 12px;
+    }
+    #suggestions{
+        margin-top: 8px;
+        font-size: 12px;
+    }
+    .main-content-container{
+        height: 550px;
+    }
+}
 
-  .main-content-container {
-    width: 95%;
-    height: auto;
-    padding: 10px;
-  }
+@media (min-width: 768px){
+    .grid-container{
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 45px 1fr;
+    }
+    .header{
+        height: 45px;
+    }
+    .material-icons-outlined{
+        font-size: 22px;
+    }  
+    .sidebar-list{
+        margin-top: 10px;
+    }
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 13px;  
+    }
+    .sidebar-brand{
+        font-size: 20px;
+    }
+    .sidebar-brand span{
+        font-size: 24px;
+        margin-left: 12px;
+    }
+    .main-content-container{
+        height: 600px;
+    }
+    #suggestions{
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    .wellness-box{
+        font-size: 14px;
+    }
+    .label{
+        font-size: 13px;
+    }
+    .labels{
+        font-size: 14px;
+    }
+    .main-content-container p{
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 992px){ 
+    .grid-container{
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: 45px 1fr;
+    }
+    .main-title{
+        font-size: 20px;
+    }
+    .header{
+        height: 45px;
+    }
+    .material-icons-outlined{
+        font-size: 24px;
+    }  
+    .sidebar-list{
+        margin-top: 25px;
+    }
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 16px;  
+    }
+    .sidebar-brand{
+        font-size: 24px;
+    }
+    .sidebar-brand span{
+        font-size: 25px;
+        margin-left: 12px;
+    }
+    .main-content-container p{
+        font-size: 18px;
+    }
+    #emoji{
+        font-size: 25px;
+    }
+    #moodSlider{
+        height: 10px;
+    }
+    .labels{
+        font-size: 12px;
+    }
+    .label{
+        font-size: 15px;
+    } 
+    .main-content-container{
+        height: 600px;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+    .wellness-box{
+        height: 28px;
+    }
+    .wellness-box p{
+        font-size: 14px;
+    }
+    
+    #suggestions{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .main-container button{
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
 
 }
 
-/* Small Mobile (480px se niche) */
-@media (max-width: 480px) {
-    .main-container{
-        width: 70%;
-        margin: auto;
-        
+@media (min-width: 1200px){ 
+    .grid-container{
+        grid-template-columns: 280px 1fr;
+        grid-template-rows: 45px 1fr;
     }
-  .main-title {
-    font-size: 14px;
-    
-  }
-
-  .main-content-container p {
-    font-size: 10px;
-  }
-
-  .label {
-    font-size: 10px;
-  }
-
-  #emoji {
-    font-size: 20px;
-  }
+    .main-content-container{
+        max-width: 600px;
+        height: 650px;
+    }
+    .main-title{
+        font-size: 22px;
+    }
+    .header{
+        height: 45px;
+    }
+    .material-icons-outlined{
+        font-size: 25px;
+    }  
+    .sidebar-list{
+        margin-top: 25px;
+    }
+    .sidebar-list-item{
+        padding: 8px 8px 8px 8px;
+        font-size: 18px;  
+    }
+    .sidebar-brand{
+        font-size: 25px;
+    }
+    .sidebar-brand span{
+        font-size: 26px;
+        margin-left: 12px;
+    }
+    .main-content-container p{
+        font-size: 18px;
+    }
+    #emoji{
+        font-size: 25px;
+    }
+    #moodSlider{
+        height: 10px;
+    }
+    .labels{
+        font-size: 13px;
+    }
+    .label{
+        font-size: 15px;
+    } 
+     .wellness-box{
+        height: 30px;
+    }
+    .wellness-box p{
+        font-size: 15px;
+    }  
+    #suggestions{
+        font-size: 14px;
+        margin-top: 12px;
+    }
+    .main-container button{
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
 }

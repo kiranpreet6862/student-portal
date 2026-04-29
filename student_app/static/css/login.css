@@ -1,8 +1,12 @@
+*{
+    box-sizing: border-box;
+}
 body{
     min-height: 100vh;
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
+    overflow-x: hidden;
     grid-template-rows: 1fr; 
     margin: 0;  
     padding: 0;
@@ -11,29 +15,39 @@ body{
     height: 100vh;
     background-color: #7A5CD6;
     position: relative;
+    display: flex;
+    justify-content: center;
+    
+    
+    
 }
 #left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     background-color: #1A1F27;
 }
 #form{
-    height: 80%;
-    width: 70%;
+    /* height: 80%; */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     display: flex;
-    margin: 55px auto;
+    /* margin: 55px auto; */
     padding-left: 10px;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     gap: 10px;
     color: white;  
     box-shadow: black -12px -12px 8px;
     box-sizing: border-box;
 }    
 #login-heading{
-    font-size: 20px ;
+    font-size: 30px ;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 0;
+    /* margin-top: -20px; */
+    margin-bottom: 4px;
    
 }
 #login-subheading{
@@ -47,12 +61,12 @@ body{
 }
 #register-btn>p{
     font-size: 12px;
-    margin-top: 28px;
+    margin-top: 18px;
     margin-left: 15px
 }
 input{
     height: 80%;
-    width: 80%;
+    width: 100%;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -115,7 +129,20 @@ input{
     font-size: 25px;
     font-weight: bold;
     margin-top: -5px;
+    animation: fadeSlide 1.5s ease forwards;
+            
 }
+@keyframes fadeSlide {
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 #login-img{
     height: 80%;
     width: 80%;
@@ -140,9 +167,8 @@ body {
 html, body {
     height: 100%;
 }
-
 #left, #img-container {
-    height: 100vh;
+    min-height: 100vh;
 }
 #login-btn>a{
     text-decoration: none;
@@ -158,12 +184,10 @@ html, body {
     position: relative;
     width: 70%;
 }
-
 .password-field input {
     width: 100%;
     padding-right: 35px;
 }
-
 .toggle-eye {
     position: absolute;
     right: -20px;
@@ -174,115 +198,14 @@ html, body {
     font-size: 16px;
     margin-bottom: 5px;
 }
-
 .toggle-eye:hover {
     color: white;
 }
 
-@media (min-width: 1000px) and (max-width: 1300px)   {
 
-    #form {
-        width: 85%;
-        margin: 54px auto;  
-        padding: 35px 20px;
-        box-sizing: border-box; 
-    }
-    #login-img {
-        width: 90%;
-    }
-    #login-heading{
-        font-size: 45px;
-    }
-    #login-subheading{
-        font-size: 24px;
-    }
-    #img-text {
-        left: 10%;
-        top: 10%;     
-    }
-    #img-title {
-        font-size: 55px;
-    }
-    #img-heading {
-        font-size: 40px;      
-    }
-    input {
-        width: 76%;
-        margin: 20px;
-        font-size: 15px;
-    }
-    #login-btn{
-        margin:25px;
-    }
-    #btn1{
-        width: 30%;
-        font-size: 15px;
-    }
-    #btn2{
-        width: 30%;
-        font-size: 15px;
-    }
-    .toggle-eye{
-        font-size: 20px;
-        margin-top: 12px;
-    }
-    #register-btn>p{
-        font-size: 15px;
-    }
-
-}
-@media (min-width: 671px) and (max-width: 999px) {
-
-    #form {
-        width: 85%;
-        margin: 54px auto;  
-        padding: 35px 20px;
-        box-sizing: border-box; 
-    }
-    #login-img {
-        width: 90%;
-    }
-    #login-heading{
-        font-size: 45px;
-    }
-    #login-subheading{
-        font-size: 25px;
-    }
-    #img-text {
-        left: 10%;
-        top: 10%;     
-    }
-    #img-title {
-        font-size: 55px;
-    }
-    #img-heading {
-        font-size: 40px;      
-    }
-    input {
-        width: 76%;
-        margin: 20px;
-        font-size: 15px;
-    }
-    #login-btn{
-        margin:25px;
-    }
-    #btn1{
-        width: 30%;
-        font-size: 15px;
-    }
-    #btn2{
-        width: 30%;
-        font-size: 15px;
-    }
-    .toggle-eye{
-        font-size: 20px;
-        margin-top: 12px;
-    }
-    #register-btn>p{
-        font-size: 15px;
-    }
-}
-@media (max-width: 670px){
+/* media queries............. */
+/* ≥ 320px ( phones) */
+@media (min-width: 320px){
     body{
         grid-template-columns: 1fr;        
     }
@@ -290,33 +213,187 @@ html, body {
         display: none ;
     }
     #form {
-        width: 85%;
-        margin: 54px auto;  
-        padding: 35px 20px;
+        height: 50%;
+        width: 75%;
+        margin: 44px auto;  
+        padding: 5px 20px ;
         box-sizing: border-box; 
+    }  
+    .password-field{
+        width: 87%;
     }
     
     #login-heading{
-        font-size: 45px;
+        font-size: 25px;
+        margin-left: 8px;
     }
     #login-subheading{
-        font-size: 25px;
+        font-size: 15px;
+        margin-left: 8px;
     }
     input {
-        width: 76%;
+        width: 86%;
+        margin: 10px;
+        font-size: 10px;
+    }
+    #login-btn{
+        margin:20px 10px;
+        font-size: 10px;
+        
+    }
+    #btn1{
+        width: 30%;
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    #btn2{
+        width: 30%;
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    .toggle-eye{
+        font-size: 10px;
+        margin-top: 12px;
+        margin-right: 12px;
+    }
+    #register-btn>p{
+        font-size: 10px;
+        margin-top: 10px;
+    }
+
+
+}
+
+
+/* ≥ 576px (large phones) */
+@media (min-width: 576px){ 
+    body{
+        grid-template-columns: 1fr;        
+    }
+    #img-container{
+        display: none ;
+    }
+    #form {
+        height: 65%;
+        width: 85%;
+        margin: 44px auto;  
+        padding: 5px 20px ;
+        box-sizing: border-box; 
+    }  
+    .password-field{
+        width: 87%;
+    }
+    
+    #login-heading{
+        font-size: 40px;
+        margin-left: 12px;
+        margin-top: -25px;
+    }
+    #login-subheading{
+        font-size: 20px;
+        margin-left: 12px;
+        margin-top: 12px;
+        
+    }
+    input {
+        width: 86%;
         margin: 20px;
         font-size: 15px;
+    }
+    #login-btn{
+        margin:25px 10px;
+        
+    }
+    #btn1{
+        width: 30%;
+        height: 32px;
+        font-size: 10px;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+    #btn2{
+        width: 30%;
+        font-size: 10px;
+        height: 32px;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+    .toggle-eye{
+        font-size: 20px;
+        margin-top: 12px;
+    }
+    #register-btn>p{
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    
+ }
+
+/* ≥ 768px (tablets) */
+@media (min-width: 768px) { 
+    body{
+        grid-template-columns: 50% 50%;
+    }
+    #form {
+        width: 74%;
+        height: 400px;
+        margin: 0 auto;  
+        padding: 0px 20px;
+        box-sizing: border-box; 
+    }
+    #login-img {
+        width: 75%;
+        height: 51%;
+        margin: 168px 48px;
+       
+    }
+    #login-heading{
+        font-size: 25px;
+        margin-top: 0;
+    }
+    #login-subheading{
+        font-size: 15px;
+        margin-top: 0;
+    }
+    #img-container{
+        display: block;
+    }
+    #img-text {
+        left: 12%;
+        top: 20%;  
+
+    }
+    #img-title {
+        font-size: 28px;
+        padding-top: 20px;
+        padding-left: 12px;
+        
+    }
+    #img-heading {
+        margin-top: 10px;
+        font-size: 35px;  
+        padding-left: 12px;    
+    }
+    input {
+        width: 86%;
+        margin: 12px;
+        font-size: 15px;
+    }
+    .password-field{
+        width: 88%;
     }
     #login-btn{
         margin:25px;
     }
     #btn1{
         width: 30%;
-        font-size: 15px;
+        font-size: 10px;
     }
     #btn2{
         width: 30%;
-        font-size: 15px;
+        font-size: 10px;
     }
     .toggle-eye{
         font-size: 20px;
@@ -327,4 +404,161 @@ html, body {
     }
 }
 
+/* ≥ 992px (small laptops) */
+@media (min-width: 992px){ 
+    #form {
+        width: 85%;
+        height: 480px;
+        margin: 0px auto;  
+        padding: 0px 20px;
+        box-sizing: border-box; 
+    }
+    #login-img {
+        width: 78%;
+        height: 475px;  
+        margin-top: 130px;
+        margin-left: 55px;
+    }   
+    #login-heading{
+        font-size: 48px;
+        margin-top: -10px;
+    }
+    #login-subheading{
+        font-size: 25px;
+        margin-top: 10px;
+    }
+    #img-text {
+        left: 12%;
+        top: 12%;     
+    }
+    #img-title {
+        font-size: 38px;
+        padding-top: 52px;  
+    }
+    #img-heading {
+        font-size: 45px; 
+    }
+    input {
+        width: 86%;
+        margin: 22px;
+        font-size: 15px;
+    }
+    #login-btn{
+        margin:25px;
+    }
+    #btn1{
+        width: 30%;
+        height: 32px;
+        font-size: 13px;
+    }
+    #btn2{
+        width: 30%;
+        height: 32px;
+        font-size: 13px;
+    }
+    .toggle-eye{
+        font-size: 20px;
+        margin-top: 12px;
+    }
+    #register-btn>p{
+        font-size: 17px;
+    }
+    #login-btn>a{
+        font-size: 14px;
 
+    }
+
+  }
+
+/* ≥ 1200px (laptops/desktops) */
+@media (min-width: 1200px){
+    #form {
+        max-width: 480px;
+    }
+    #login-img {
+        width: 75%;
+        margin: 125px 65px;
+    }
+    #login-heading{
+        font-size: 40px;
+        margin-top: -20px;
+        
+    }
+    #login-btn>a{
+        font-size: 15px;
+
+    }
+    #login-subheading{
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    #img-text {
+        left: 11%;
+        top: 11%;     
+    }
+    #img-title {
+        font-size: 38px;
+        padding-top: 42px;  
+    }
+    #img-heading {
+        font-size: 48px; 
+    }
+    #register-btn>p{
+        font-size: 17px;
+    }
+
+  }
+
+/* ≥ 1400px (large screens) */
+@media (min-width: 1400px){ 
+    #form {
+        max-width: 580px;
+        height:600px ;    
+    }       
+    #login-img {
+        width: 78%;
+        margin: 85px 65px;
+        height: 600px;
+    }
+    #login-heading{
+        font-size: 50px;
+        margin-top: -2px;
+    }
+    #login-subheading{
+        font-size: 25px;
+    
+    }
+    #img-text {
+        left: 10%;
+        top: 3%;     
+    }
+    #img-title {
+        font-size: 48px;
+        padding-top: 52px;  
+    }
+    #img-heading {
+        font-size: 65px; 
+    }
+    #login-btn{
+        margin-top: 35px;
+        font-size: 18px;
+    }
+    #register-btn{
+        margin-top: 30px;
+    }
+    #btn1,#btn2{
+        font-size: 15px;
+        height: 38px;
+    }
+    #register-btn>p{
+        font-size: 18px;
+        margin-top: 12px;
+    }
+    input{
+        margin: 28px;
+        font-size: 20px;
+    }
+    
+    
+    
+ }

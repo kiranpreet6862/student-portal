@@ -160,3 +160,12 @@ class settings(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         settings.objects.create(user=instance)  
+        
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message

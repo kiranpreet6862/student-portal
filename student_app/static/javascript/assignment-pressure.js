@@ -64,11 +64,6 @@ function closeAssignmentModal() {
     }
 }
 
-// window.onclick = function(event) {
-//     var modal = document.getElementById('assignmentModal');
-//     if (event.target === modal) {
-//         closeAssignmentModal();
-//     }
-// }
+
 
 

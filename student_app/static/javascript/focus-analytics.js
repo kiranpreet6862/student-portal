@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const stopBtn = document.getElementById("stopBtn");
 
     stopBtn.addEventListener("click", () => {
-        console.log("STOP CLICKED ");   // test
+        console.log("STOP CLICKED ");   
 
         if(!paused){
             paused = true;
@@ -124,10 +124,11 @@ function updateTime(){
 let barChart;
 function renderBarChart(){
 const isDark = document.body.classList.contains("dark-mode");
+const isTablet = window.innerWidth >= 992;
 var options = {
   chart: {
     type: 'bar',
-    height: 180,
+    height: isTablet ? 280 : 180,
     toolbar: {
       show: false
     }
@@ -144,6 +145,7 @@ var options = {
     categories: weekLabels,
     labels: {
       style: {
+        fontSize: isTablet ? '14px' : '11px',
         colors: isDark ? '#e2e8f0' : '#333'
       }
     }
@@ -155,6 +157,7 @@ var options = {
     tickAmount: 8,
     labels: {  
       style: {
+        fontSize: isTablet ? '14px' : '11px',
         colors: isDark ? '#e2e8f0' : '#333'
       }
     },
@@ -173,7 +176,8 @@ var options = {
 
   title: {
     text: "Daily Focus Hours",
-    style: {   
+    style: {  
+      fontSize: isTablet ? '18px' : '14px', 
       color: isDark ? '#e2e8f0' : '#000'
     }
   },
@@ -243,11 +247,12 @@ function updateBarChartTheme() {
 let pieChart;
 function renderPieChart() {
   const isDark = document.body.classList.contains("dark-mode");
+  const isTablet = window.innerWidth >= 992;
 var options = {
   series: pieData,
 
   chart: {
-    height:200,
+    height:isTablet ? 300 : 200, 
     
     type: 'pie'
   },
@@ -259,9 +264,9 @@ var options = {
   legend: {
     position: 'bottom',
     horizontalAlign: 'center',
-    fontSize: '10px',
+    fontSize:isTablet ? '14px' : '10px', 
     labels: {
-      colors: '#333'
+      colors: isDark ? '#e2e8f0' : '#333'
     }
   },
 
@@ -287,7 +292,11 @@ var options = {
     }
   },
   title: {
-    text: "Distraction Breakdown"
+    text: "Distraction Breakdown",
+    style: {
+    fontSize: isTablet ? '20px' : '16px',   
+    color: isDark ? '#e2e8f0' : '#000'
+  }
   },
 
   responsive: [{
@@ -351,6 +360,18 @@ window.onload = () => {
     updatePieChartTheme();
   }, 50);
 };
+
+window.addEventListener("resize", function () {
+  if (barChart) {
+    barChart.destroy();
+    renderBarChart();
+  }
+
+  if (pieChart) {
+    pieChart.destroy();
+    renderPieChart();
+  }
+});
 
 
 function openModal() {

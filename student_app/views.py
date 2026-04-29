@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
-from .models import WellnessCheckin,Assignment,FocusData,WellnessReport,settings
+from .models import WellnessCheckin,Assignment,FocusData,WellnessReport,settings,Notification
 from datetime import datetime,timedelta,date
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -141,7 +141,9 @@ def dashboard(request):
         "labels": ",".join(labels),  #  dynamic string
         "wellness_scores": ",".join(str(x) for x in wellness_scores), # dynamic values
     }
-    
+    notifications = Notification.objects.filter(
+        user=request.user
+        ).order_by('-created_at')[:5]
      
     
     return render(request,"dashboard.html", {
@@ -153,6 +155,7 @@ def dashboard(request):
     "pressure_score": pressure_score,
     "pressure_label":pressure_label,
     "context": context,
+    "notifications": notifications
 })   
 
 # CHECK-IN........WELLNESS SCORE............
@@ -171,6 +174,14 @@ def checkin(request):
             workload=workload,
             mood=mood
         )
+        
+        # Low wellness score notification
+        percentage = round(obj.get_percentage(), 1)
+        if percentage < 40:
+            Notification.objects.create(
+                user=request.user,
+                message=f"😵 Your wellness score is low ({percentage}%). Please take care!"
+            )
 
         return render(request, "check-in.html", {
             "score": round(obj.get_percentage(),1),
@@ -186,11 +197,27 @@ def assignmentPressure(request):
     #  DELETE OVERDUE ASSIGNMENTS 
     today = date.today()
     overdue_assignments = Assignment.objects.filter(
-        user=request.user,
-        due_date__lt=today, 
-        is_completed=False
+    user=request.user,
+    due_date__lt=today,
+    is_completed=False
     )
-    overdue_assignments.delete()
+
+    for a in overdue_assignments:
+        Notification.objects.get_or_create(
+            user=request.user,
+            message=f"⚠️ '{a.title}' is overdue!"
+        )
+        
+    upcoming = Assignment.objects.filter(
+        user=request.user,
+        due_date__in=[today + timedelta(days=1), today + timedelta(days=2)],
+        is_completed=False
+        )
+    for a in upcoming:
+        Notification.objects.get_or_create(
+            user=request.user,
+            message=f"🔔 '{a.title}' is due in {(a.due_date - today).days} day(s)!"
+        )
     
     # Delete
     if request.method == "POST" and 'complete_assignment_id' in request.POST:
@@ -199,6 +226,10 @@ def assignmentPressure(request):
             assignment = Assignment.objects.get(id=assignment_id, user=request.user)
             assignment.is_completed = True
             assignment.save()
+            Notification.objects.create(
+                user=request.user,
+                message=f"✅ '{assignment.title}' completed!"
+            )
             messages.success(request, f"✅ '{assignment.title}' completed!")
         except Assignment.DoesNotExist:
             messages.error(request, "Assignment not found!")
@@ -254,6 +285,17 @@ def assignmentPressure(request):
             is_completed=False         
         )      
         messages.success(request, f"✅ '{title}' added successfully!")
+        Notification.objects.create(
+            user=request.user,
+            message=f"📚 New assignment '{title}' added"
+        )
+        
+        #  High pressure check
+        if obj.pressure_level and obj.pressure_level >= 70:
+            Notification.objects.create(
+                user=request.user,
+                message=f"📊 '{title}' has high pressure ({obj.pressure_level}%)!"
+            )
         return redirect('assignment-pressure')
                  
         # return render(request, "assignment-pressure.html",{

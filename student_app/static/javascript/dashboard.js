@@ -49,7 +49,7 @@ window.onload = () => {
     document.getElementById("themeIcon").textContent = "light_mode";
   }
 
-  // ✅ GET CHART ELEMENT
+  
   const chartEl = document.getElementById("area-chart");
 
   let labels = [];
@@ -70,20 +70,20 @@ window.onload = () => {
 if (wellnessData.every(val => val === 0)) {
   console.log("No data available");
 }
+const isDark = document.body.classList.contains("dark-mode");
+  //  pass data to chart
+  renderAreaChart(labels, wellnessData,isDark); 
+  renderDonutChart(isDark); 
 
-  // ✅ pass data to chart
-  renderAreaChart(labels, wellnessData); 
-  renderDonutChart(); 
-
-  setTimeout(() => {
-    updateChartTheme();
-  }, 10);
+  // setTimeout(() => {
+  //   updateChartTheme();
+  // }, 10);
 };
 
 // ...................area chart.................
-function renderAreaChart(labels, wellnessData) {
+function renderAreaChart(labels, wellnessData,isDark) {
 
-  const isDark = document.body.classList.contains("dark-mode");
+  
 
   var areaChartOptions = {
     series: [{
@@ -92,7 +92,7 @@ function renderAreaChart(labels, wellnessData) {
     }],
 
     chart: {
-      height: 250,
+      height: 380,
       type: 'area',
       toolbar: { show: false }
     },
@@ -110,7 +110,8 @@ function renderAreaChart(labels, wellnessData) {
       categories: labels,
       labels: {
         style: {
-          colors: isDark ? '#e2e8f0' : '#333'
+          colors: isDark ? '#e2e8f0' : '#333',
+          fontSize: '14px' 
         }
       }
     },
@@ -121,7 +122,8 @@ function renderAreaChart(labels, wellnessData) {
       tickAmount: 10,
       labels: {
         style: {
-          colors: isDark ? '#e2e8f0' : '#333'
+          colors: isDark ? '#e2e8f0' : '#333',
+          fontSize: '14px' 
         }
       }
     },
@@ -163,11 +165,14 @@ function updateChartTheme() {
       theme: isDark ? 'dark' : 'light'  
     }
   });
+  document.querySelector("#donut-chart").innerHTML = "";
+  renderDonutChart(isDark);
+
 }
 
 // ....................Donut-chart..................
 
-function renderDonutChart() {
+function renderDonutChart(isDark) {
 
     var element = document.querySelector("#donut-chart");
 
@@ -179,7 +184,7 @@ function renderDonutChart() {
 
         chart: {
             type: 'donut',
-            height: 150
+            height: 300
         },
 
         labels: ['Pressure', 'Remaining'],
@@ -192,8 +197,18 @@ function renderDonutChart() {
                     size: '60%',
                     labels: {
                         show: true,
+
+                        value: {
+                            fontSize: '25px',
+                            color: isDark ? '#fff' : '#000'
+                        },
+
                         total: {
                             show: true,
+                            label: 'Total',
+                            fontSize: '25px',
+                            color: isDark ? '#e2e8f0' : '#333',
+
                             formatter: function () {
                                 return pressure + '%';
                             }
@@ -203,7 +218,7 @@ function renderDonutChart() {
             }
         },
 
-        dataLabels: { enabled: false },
+        dataLabels: { enabled: false },  
         legend: { show: false },
         stroke: { width: 0 }
     };
@@ -212,20 +227,4 @@ function renderDonutChart() {
     donutChart.render();
 }
 
-// ================= GET DATA =================
-// var labels = [];
-// var wellnessData = [];
-
-// if (chartEl.dataset.labels) {
-//   labels = chartEl.dataset.labels
-//     .replace(/[\[\]\s]/g, '')   // remove [ ] and spaces
-//     .split(',');
-// }
-
-// if (chartEl.dataset.values) {
-//   wellnessData = chartEl.dataset.values
-//     .replace(/[\[\]\s]/g, '')
-//     .split(',')
-//     .map(Number);
-// }
 

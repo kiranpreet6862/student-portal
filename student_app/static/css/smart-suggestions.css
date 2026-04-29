@@ -260,8 +260,6 @@ a{
     gap: 10px;
     grid-template-areas: 
     "card1 card2 card3";
-    
-
 }
 
 .card{
@@ -375,21 +373,171 @@ a{
     color: var(--heading-color);
 }
 
-@media (max-width:768px){
-    .main-content{
-        grid-template-columns: 1fr ;
-        grid-template-areas: 
-        "card1"
-        "card2"
-        "card3"
-        "card4";
-    }
-    .sidebar-hidden{
-        width: 0;
-        overflow: hidden;
-    }
+@media (min-width:320px){
+  .grid-container{
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: 40px 1fr;
+    grid-template-areas: 
+    "sidebar header"
+    "sidebar main";
+  }
+  .main-content{
+    grid-template-columns: 1fr ;
+    gap: 10px;
+    grid-template-areas: 
+    "card1"
+    "card2"
+    "card3";
+  }
+  .card{
+    height: 150px;
+  }
+  .material-icons-outlined{
+    font-size: 20px;
+  }
+  .sidebar-list{
+    margin-top: 10px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 12px;  
+  }
+  .sidebar-brand{
+    font-size: 18px;
+  }
+  .sidebar-brand span{
+    font-size: 22px;
+    margin-left: 12px;
+  }
+  .card button{
+    font-weight: bold;
+  }
+}
+@media (min-width:768px){
+  .grid-container{
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 45px 1fr;
+  }
+  .material-icons-outlined{
+    font-size: 22px;
+  }  
+  .sidebar-list{
+    margin-top: 10px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 13px;  
+  }
+  .sidebar-brand{
+    font-size: 20px;
+  }
+  .sidebar-brand span{
+    font-size: 24px;
+    margin-left: 12px;
+  }
+  .card{
+    height: 180px;
+    padding-top: 15px;
+  }
+  .card button{
+    margin-top: 10px;
+  }
+  .card p{
+    font-size: 14px;
+  }
+  .heading{
+    font-size: 14px;
+  }
+  .text{
+    font-size: 14px;
+  }
+}
+@media (min-width:992px){
+  .main-content{
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 10px;
+    grid-template-areas: 
+    "card1 card2 card3";
+  }
+  .grid-container{
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 50px 1fr;
+  }
+  .header{
+    height:50px;
+  }
+  .card{
+    height: 200px;
+    padding-top: 15px;
+  }
+  .card p{
+    font-size: 12px;
+  }
+  .heading{
+    font-size: 14px;
+  }
+  .text{
+    font-size: 12px;
+  }
+  #btn1,#btn2{
+    margin-top: 20px;
+    padding: 10px;
+  }
+  #btn3{
+    margin-top: 10px;
+    padding: 9px;
+  }
+  .main-title p{
+    font-size: 20px;
+  }
 
-    .grid-container{
-        grid-template-columns: 0px 1fr;
-    }
+}
+@media (min-width:1200px){
+  .grid-container{
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 45px 1fr;
+  }
+  .material-icons-outlined{
+    font-size: 24px;
+  }  
+  .sidebar-list{
+    margin-top: 30px;
+  }
+  .sidebar-list-item{
+    padding: 8px 8px 8px 8px;
+    font-size: 18px;    
+  }   
+  .sidebar-brand{
+    font-size: 
+    25px;
+  }
+  .sidebar-brand span{
+    font-size: 30px;
+    margin-left: 12px;
+  }
+  .card{
+    height: 250px;
+  }
+  .card p{
+    font-size: 18px;
+  }
+  .heading{
+    font-size: 18px;
+  }
+  .text{
+    font-size: 14px;
+  }
+  .card button{
+    font-size: 15px;
+  }
+  #card-3 p{
+    font-size: 18px;
+  }
+  #btn3{
+    margin-top: 8px;
+    padding: 9px;
+  }
+  .main-title p{
+    font-size: 25px;
+  }
 }

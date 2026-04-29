@@ -57,7 +57,7 @@ function getThemeColors() {
 let chart;
 
 function renderComboChart() {
-
+  const isTablet = window.innerWidth >=768;
   const theme = getThemeColors();
 
   var options = {
@@ -76,7 +76,7 @@ function renderComboChart() {
     ],
 
     chart: {
-      height: 250,
+      height: isTablet ? "360" :"280",
       type: 'line',
       toolbar: {
         show: false
@@ -108,6 +108,7 @@ function renderComboChart() {
       categories: labels,
       labels: {
         style: {
+          fontsize: isTablet ? "14px" : "12px",
           colors: theme.text
         }
       }
@@ -122,6 +123,7 @@ function renderComboChart() {
         tickAmount: 8,
         labels: {
           style: {
+            fontsize: isTablet ? "14px" : "12px",
             colors: theme.text
           }
         }
@@ -134,6 +136,7 @@ function renderComboChart() {
         tickAmount: 10,
         labels: {
           style: {
+            fontsize: isTablet ? "14px" : "12px",
             colors: theme.text
           }
         }
@@ -166,7 +169,6 @@ function renderComboChart() {
 function updateComboChartTheme() {
 
   if (!chart) return;  
-
   const theme = getThemeColors();
 
   chart.updateOptions({

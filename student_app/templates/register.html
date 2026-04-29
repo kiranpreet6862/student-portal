@@ -2,28 +2,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 <body>
-<div>
-{% if error %}
-<p style="color:red;">{{ error }}</p>
-{% endif %}
+<div class="container">
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
 
-<h2>Student Registration</h2>
+    <h2>Student Registration</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" name="username"  id="input1" required><br><br>
-    <label for="email">Email:</label>
-    <input type="email" name="email"  id="input2" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" name="password"  id="input3" required><br><br>
-    <button type="submit" id="btn1">Register</button>
-    <button type="button" id="btn2" onclick="window.location.href='{% url 'login' %}'">Login</button>
-</form>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username"  id="input1" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email"  id="input2" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password"  id="input3" required><br><br>
+        <div class="buttons">
+            <button type="submit" id="btn1">Register</button>
+            <button type="button" id="btn2" onclick="window.location.href='{% url 'login' %}'">Login</button>
+        </div>      
+    </form>
 </div>
 
 </body>
