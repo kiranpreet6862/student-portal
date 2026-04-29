@@ -156,6 +156,13 @@ Personalized wellness, academic, and sleep recommendations based on student data
 - Auto-deletes overdue incomplete assignments
 - Weekly Workload Capacity progress bar
 
+### 🔔 Smart Notification System
+- ⚠️ **Assignment Overdue** — Alert when a deadline has passed
+- 🔔 **Due Date Near** — Reminder when assignment is due in 1–2 days
+- ✅ **Assignment Completed** — Confirmation when task is marked done
+- 📊 **High Pressure Alert** — Triggered when assignment pressure level exceeds 70%
+- 😵 **Low Wellness Alert** — Triggered when wellness score drops below 40%
+
 ### ⏱️ Focus Analytics
 - Built-in Focus Timer with Start, Stop, Reset
 - Track distractions — Phone, Social Media, Daydreaming, Others
@@ -325,7 +332,7 @@ Open in browser: `http://127.0.0.1:8000/`
 - [ ] ML model to predict burnout 3 days in advance
 - [ ] Wearable device integration for auto sleep tracking
 - [ ] Teacher dashboard for college-level monitoring
-- [ ] Push notifications for daily check-in reminders
+- [ ] Email & push notifications for daily check-in reminders
 - [ ] PostgreSQL for production database
 
 ---
@@ -337,6 +344,7 @@ Open in browser: `http://127.0.0.1:8000/`
 - Real-world problem solving with preventive care mindset
 - Scalable to college-wide or mobile deployment
 - Formula-based intelligence, not just storing and displaying data
+- Smart notification system for real-time student alerts
 
 ---
 
